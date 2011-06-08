@@ -57,6 +57,10 @@ section iframe {
   margin-bottom: 1em;
 }
 
+section iframe.high {
+  height: 450px;
+}
+
 
 p, dl, li {
   color: #665504;
