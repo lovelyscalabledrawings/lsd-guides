@@ -18,6 +18,11 @@ body {
         margin-left: 0.3em;
         padding-left: 0.3em;
         border-left: 1px solid #666666; }
+    .grid > nav ul[name] input[type=search] {
+      float: left; }
+    .grid > nav ul[name] label {
+      float: left;
+      clear: both; }
   .grid > ul {
     border: 1px solid #333333;
     border-radius: 0.5em;
