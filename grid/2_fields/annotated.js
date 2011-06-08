@@ -124,7 +124,7 @@ LSD.Widget.Grid.List = new Class({
 LSD.Widget.Grid.List.Item = new Class({
   options: {
     tag: 'item',
-    pseudos: ['item'],
+    pseudos: ['item', 'clickable'],
     has: {
       /*
         Grant each item one checkbox. It will be accessible as
@@ -132,16 +132,23 @@ LSD.Widget.Grid.List.Item = new Class({
       */
       one: {
         checkbox: {
-          selector: 'input[type=checkbox]'
-        },
-        /*
-          states.get option links the "selected" state of item
-          to a "checked" state of a checkbox. So whenever item 
-          is selected, checkbox is checked.
-        */,
-        states: {
-          get: {
-            'checked': 'selected'
+          selector: 'input[type=checkbox]',
+          /*
+            states.get option links the "selected" state of item
+            to a "checked" state of a checkbox. So whenever item 
+            is selected, checkbox is checked.
+          */,
+          states: {
+            get: {
+              'checked': 'selected'
+            },
+          /*
+            states.set makes item widget to check its checkboxes
+            whenever it gets selected.
+          */
+            set: {
+              'selected': 'checked'
+            }
           }
         }
       }
@@ -153,9 +160,10 @@ new LSD.Document({
     '.grid': 'grid',
 /*
   Add one more mutation to document options that will
-  convert any &lt;ul&gt; with name attribute to selectlist  
+  convert any &lt;ul&gt; with name attribute inside &lt;nav&gt; element
+  into selectlist widget  
 */
-    'ul[name]': 'selectlist'
+    'nav ul[name]': 'selectlist'
   }
 });
 
@@ -183,6 +191,8 @@ console.log('grid.elements', grid.elements);
 */
 console.log('Output all submittable fields (checked checkboxes and inputs that have name)')
 console.log('grid.submittableElements', grid.submittableElements);
+console.log('grid.submittableElements', grid.submittableElements.map(function(widget) { return widget.source}));
+
 /*
   Selected items are magically tracked for you. Select one item and it ends up in 
   .selectedItems array. 

@@ -310,7 +310,7 @@
         <li>3</li>
         <li>4</li>
       </ol>
-      <code>  <span class="nt">&lt;nav&gt;</span>&#x000A;    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&#39;q&#39;</span> <span class="na">type=</span><span class="s">&#39;search&#39;</span> <span class="nt">/&gt;</span>&#x000A;    <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span><span class="nt">&gt;</span>Search<span class="nt">&lt;/input&gt;</span>&#x000A;</code>
+      <code>  <span class="nt">&lt;nav&gt;</span>&#x000A;    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&#39;q&#39;</span> <span class="na">type=</span><span class="s">&#39;search&#39;</span> <span class="nt">/&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span><span class="nt">&gt;</span>Send<span class="nt">&lt;/button&gt;</span>&#x000A;</code>
     </figure>
     <section>
       <h2>Radiogroup (&lt;select&gt;)</h2>
@@ -568,7 +568,7 @@
         <li>59</li>
         <li>60</li>
       </ol>
-      <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;</code>
+      <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;</code>
     </figure>
     <section>
       <p>Grant each item one checkbox. It will be accessible as
@@ -579,9 +579,8 @@
         <li>61</li>
         <li>62</li>
         <li>63</li>
-        <li>64</li>
       </ol>
-      <code>      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">checkbox</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;input[type=checkbox]&#39;</span>&#x000A;        <span class="p">},</span>&#x000A;</code>
+      <code>      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">checkbox</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;input[type=checkbox]&#39;</span><span class="p">,</span>&#x000A;</code>
     </figure>
     <section>
       <p>states.get option links the &ldquo;selected&rdquo; state of item
@@ -590,9 +589,19 @@
     </section>
     <figure>
       <ol>
+        <li>64</li>
         <li>65</li>
         <li>66</li>
         <li>67</li>
+      </ol>
+      <code>          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">get</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;checked&#39;</span><span class="o">:</span> <span class="s1">&#39;selected&#39;</span>&#x000A;            <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>states.set makes item widget to check its checkboxes
+      whenever it gets selected.</p>
+    </section>
+    <figure>
+      <ol>
         <li>68</li>
         <li>69</li>
         <li>70</li>
@@ -602,26 +611,30 @@
         <li>74</li>
         <li>75</li>
         <li>76</li>
-      </ol>
-      <code>        <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">get</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="s1">&#39;checked&#39;</span><span class="o">:</span> <span class="s1">&#39;selected&#39;</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;</code>
-    </figure>
-    <section>
-      <p>Add one more mutation to document options that will
-      convert any &lt;ul&gt; with name attribute to selectlist</p>
-    </section>
-    <figure>
-      <ol>
         <li>77</li>
         <li>78</li>
         <li>79</li>
+      </ol>
+      <code>            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;selected&#39;</span><span class="o">:</span> <span class="s1">&#39;checked&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Add one more mutation to document options that will
+      convert any &lt;ul&gt; with name attribute inside &lt;nav&gt; element
+      into selectlist widget</p>
+    </section>
+    <figure>
+      <ol>
         <li>80</li>
         <li>81</li>
         <li>82</li>
         <li>83</li>
         <li>84</li>
         <li>85</li>
+        <li>86</li>
+        <li>87</li>
+        <li>88</li>
       </ol>
-      <code>    <span class="s1">&#39;ul[name]&#39;</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;&#x000A;&#x000A;&#x000A;<span class="kd">var</span> <span class="nx">grid</span> <span class="o">=</span> <span class="nx">LSD</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElement</span><span class="p">(</span><span class="s1">&#39;grid&#39;</span><span class="p">);</span>&#x000A;&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s1">&#39;Information&#39;</span><span class="p">);</span>&#x000A;</code>
+      <code>    <span class="s1">&#39;nav ul[name]&#39;</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;&#x000A;&#x000A;&#x000A;<span class="kd">var</span> <span class="nx">grid</span> <span class="o">=</span> <span class="nx">LSD</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElement</span><span class="p">(</span><span class="s1">&#39;grid&#39;</span><span class="p">);</span>&#x000A;&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s1">&#39;Information&#39;</span><span class="p">);</span>&#x000A;</code>
     </figure>
     <section>
       <p>All widgets with names are automatically registered in a form in a special
@@ -629,16 +642,16 @@
     </section>
     <figure>
       <ol>
-        <li>86</li>
-        <li>87</li>
+        <li>89</li>
+        <li>90</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Output all field names of all widgets in grid&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Object.keys(grid.names)&#39;</span><span class="p">,</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">grid</span><span class="p">.</span><span class="nx">names</span><span class="p">));</span>&#x000A;</code>
     </figure>
     <section><p>There&rsquo;s also an .elements array that holds all form-associated widgets</p></section>
     <figure>
       <ol>
-        <li>89</li>
-        <li>90</li>
+        <li>92</li>
+        <li>93</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Output all fields&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.elements&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">elements</span><span class="p">);</span>&#x000A;</code>
     </figure>
@@ -648,10 +661,11 @@
     </section>
     <figure>
       <ol>
-        <li>92</li>
-        <li>93</li>
+        <li>95</li>
+        <li>96</li>
+        <li>97</li>
       </ol>
-      <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Output all submittable fields (checked checkboxes and inputs that have name)&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.submittableElements&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">submittableElements</span><span class="p">);</span>&#x000A;</code>
+      <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Output all submittable fields (checked checkboxes and inputs that have name)&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.submittableElements&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">submittableElements</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.submittableElements&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">submittableElements</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">widget</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">widget</span><span class="p">.</span><span class="nx">source</span><span class="p">}));</span>&#x000A;</code>
     </figure>
     <section>
       <p>Selected items are magically tracked for you. Select one item and it ends up in
@@ -662,13 +676,13 @@
     </section>
     <figure>
       <ol>
-        <li>94</li>
-        <li>95</li>
-        <li>96</li>
-        <li>97</li>
-        <li>98</li>
         <li>99</li>
         <li>100</li>
+        <li>101</li>
+        <li>102</li>
+        <li>103</li>
+        <li>104</li>
+        <li>105</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Output selected items, select one, and output selected items again&#39;</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.list.selectedItems&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.list.getData()&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">getData</span><span class="p">());</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.list.items[0].select()&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">items</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">select</span><span class="p">());</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.list.selectedItems&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;grid.list.getData()&#39;</span><span class="p">,</span> <span class="nx">grid</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">getData</span><span class="p">());</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s1">&#39;Information&#39;</span><span class="p">);</span>&#x000A;</code>
     </figure>

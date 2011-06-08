@@ -54,15 +54,18 @@ LSD.Widget.Grid.List = new Class({
 LSD.Widget.Grid.List.Item = new Class({
   options: {
     tag: 'item',
-    pseudos: ['item'],
+    pseudos: ['item', 'clickable'],
     has: {
       one: {
         checkbox: {
-          selector: 'input[type=checkbox]'
-        },
-        states: {
-          get: {
-            'checked': 'selected'
+          selector: 'input[type=checkbox]',
+          states: {
+            get: {
+              'checked': 'selected'
+            },
+            set: {
+              'selected': 'checked'
+            }
           }
         }
       }
@@ -72,7 +75,7 @@ LSD.Widget.Grid.List.Item = new Class({
 new LSD.Document({
   mutations: {
     '.grid': 'grid',
-    'ul[name]': 'selectlist'
+    'nav ul[name]': 'selectlist'
   }
 });
 
@@ -87,6 +90,7 @@ console.log('Output all fields')
 console.log('grid.elements', grid.elements);
 console.log('Output all submittable fields (checked checkboxes and inputs that have name)')
 console.log('grid.submittableElements', grid.submittableElements);
+console.log('grid.submittableElements', grid.submittableElements.map(function(widget) { return widget.source}));
 console.log('Output selected items, select one, and output selected items again');
 console.log('grid.list.selectedItems', grid.list.selectedItems);
 console.log('grid.list.getData()', grid.list.getData());

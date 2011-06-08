@@ -8,10 +8,16 @@ body
   :display block
   :padding 0.5em
   > nav
+    :overflow hidden
     ul[name]
       :vertical-align baseline
       :display inline-block
       > li
+        :color #999
+        :text-decoration underline
+        &.selected
+          :color #333
+          :text-decoration none
         :display inline-block
         :vertical-align baseline
         \+ li
@@ -19,14 +25,18 @@ body
           :padding-left 0.3em
           :border-left 1px solid #666
           
-      input[type=search]
+    input[type=search]
+      :float left
+    label
+      :margin-right 1em
+      :font weight bold
+      &, & + *
+        :margin-top 0.25em
         :float left
-        
-      label
-        :float left
-        :clear both
+      :clear both
 
   > ul
+    :margin-top 0.5em
     :border 1px solid #333
     :border-radius 0.5em
     :-webkit-border-radius 0.5em
@@ -36,9 +46,13 @@ body
     :-webkit-box-shadow 0 3px 5px #555
     :-moz-box-shadow 0 3px 5px #555
     > li
-      &:selected
+      &.selected
         :background-color #FFC873
-      :padding 0.5em
+      :padding 0.5em 0.5em 0.5em 1.5em
+      > input[type=checkbox]
+        :margin-left -1.5em
+        \+ h2
+          :margin-top -1.15em
       :border 1px solid #666
       :border-radius 0.5em
       :-webkit-border-radius 0.5em
