@@ -14,8 +14,8 @@ requires:
   - LSD/LSD.Native
   - LSD/LSD.Widget
   - LSD/LSD.Document
-  - LSD/LSD.Mixin.Resource
-  - LSD/LSD.Mixin.Validity
+  - LSD/LSD.Mixin.*
+  - LSD/LSD.Action.*
   - Native/LSD.Native.Input
   - Native/LSD.Native.Input.Checkbox
   - Native/LSD.Native.Input.Radio
