@@ -13,6 +13,7 @@ requires:
   - LSD/LSD.Layout
   - LSD/LSD.Native
   - LSD/LSD.Widget
+  - LSD/LSD.Document
   - LSD/LSD.Mixin.Resource
   - LSD/LSD.Mixin.Validity
   - Native/LSD.Native.Input
