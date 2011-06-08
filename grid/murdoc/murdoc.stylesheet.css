@@ -48,10 +48,10 @@ header {
 section {
   float: left;
   clear: both;
-  width: 87%; }
+  width: 85%; }
   
 section iframe {
-  width: 240%;
+  width: 260%;
   height: 250px;
   border: 1px solid #333;
   margin-bottom: 1em;
@@ -107,14 +107,17 @@ dl {
 figure {
   display: block;
   float: right;
-  margin-right: -140%;
+  margin-right: -135%;
   width: 122.75%;
   clear: right;
-  padding: 1.5em 5% 3em; }
+  padding: 1.5em 0 3em; }
   figure > ol {
-    text-shadow: 0 1px 0 #FFDE40;
-    -moz-text-shadow: 0 1px 0 #FFDE40;
-    -webkit-text-shadow: 0 1px 0 #FFDE40;
+    text-shadow: 0 1px 0 #eee;
+    -moz-text-shadow: 0 1px 0 #eee;
+    -webkit-text-shadow: 0 1px 0 #eee;
+    box-shadow: 0 1px 2px #333;
+    -moz-box-shadow: 0 1px 2px #333;
+    -webkit-box-shadow: 0 1px 2px #333;
     width: 7.5%;
     text-align: right;
     float: left;
