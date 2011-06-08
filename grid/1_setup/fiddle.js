@@ -34,6 +34,7 @@ LSD.Widget.Grid.List.Item = new Class({
   }
 });
 new LSD.Document({
+  context: 'widget',
   mutations: {
     '.grid': 'grid'
   }

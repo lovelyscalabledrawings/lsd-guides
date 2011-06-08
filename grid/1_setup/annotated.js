@@ -91,8 +91,11 @@ LSD.Widget.Grid.List.Item = new Class({
   Mutations will be transferred to body widget, so whenever
   an element with 'grid' class is found, it gets converted into 
   grid widget. 
+  
+  *widget* **context** makes LSD.Widget the default widget namespace. 
 */
 new LSD.Document({
+  context: 'widget',
   mutations: {
     '.grid': 'grid'
   }
