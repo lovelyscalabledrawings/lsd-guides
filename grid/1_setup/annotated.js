@@ -36,7 +36,7 @@ LSD.Widget.Grid = new Class({
       one: {
         list: {
           selector: 'list',
-          mutate: '> ul',
+          mutation: '> ul',
           source: 'grid-list'
         }
       }
@@ -65,7 +65,7 @@ LSD.Widget.Grid.List = new Class({
     has: {
       many: {
         items: {
-          mutate: '> li',
+          mutation: '> li',
           source: 'grid-list-item'
         }
       }
@@ -92,11 +92,44 @@ LSD.Widget.Grid.List.Item = new Class({
   an element with 'grid' class is found, it gets converted into 
   grid widget. 
   
-  *widget* **context** makes LSD.Widget the default widget namespace. 
+  First initialized document is accessible as LSD.document.
 */
 new LSD.Document({
-  context: 'widget',
   mutations: {
     '.grid': 'grid'
   }
 });
+
+/*
+  Let's play with it a little bit.
+  
+  **document.getItems** serializes html elements that define microdata
+  properties and returns an array of entities set in document.
+*/
+
+console.group('Information');
+console.log('Items found in document:')
+console.log('document.getItems()', document.getItems());
+
+/*
+  ## Selecting widgets 
+  Let's try accessing the items on a grid. 
+  
+  First example shows a simple and the most common way of selecting 
+  widgets, a selector. In second example, .list and .items properties
+  are set by relations, so related widgets are already selected and stored
+  in a friendly way.
+*/
+console.log('Number of items in list')
+console.log('LSD.document.getElements("grid list item").length', LSD.document.getElements("grid list item").length);
+console.log('LSD.document.getElement("grid").list.items.length', LSD.document.getElement("grid").list.items.length);
+
+/*
+  ## Recursive layout
+  
+  Document initialized all widgets and made a a tree of them. But there's an old
+  way to select all widgets (by using * wildcard tag) and map them to find their tagNames
+*/
+console.log('Widget tag names in document')
+console.log('LSD.document.getElements("*").map(function(w) { return w.tagName })', LSD.document.getElements("*").map(function(w) { return w.tagName }))
+console.groupEnd('Information');

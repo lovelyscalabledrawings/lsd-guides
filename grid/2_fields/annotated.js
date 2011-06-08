@@ -5,7 +5,7 @@
   selects one or many items and works as a select box but if all its options
   were shown inline. 
 */
-IAS.Widget.Selectlist = new Class({
+LSD.Widget.Selectlist = new Class({
   options: {
     /*
       Selectlist is a **list**, before all. List relation also defines 
@@ -58,7 +58,7 @@ IAS.Widget.Selectlist = new Class({
   the command will initiate click, that will select the option in a list.
 */
 
-IAS.Widget.Selectlist.Option = new Class({
+LSD.Widget.Selectlist.Option = new Class({
   options: {
     tag: 'option',
     pseudos: Array.fast('item', 'clickable')
@@ -73,7 +73,7 @@ LSD.Widget.Grid = new Class({
       one: {
         list: {
           selector: 'list',
-          mutate: '> ul',
+          mutation: '> ul',
           source: 'grid-list'
         }
       }
@@ -114,7 +114,7 @@ LSD.Widget.Grid.List = new Class({
     has: {
       many: {
         items: {
-          mutate: '> li',
+          mutation: '> li',
           source: 'grid-list-item'
         }
       }
@@ -133,7 +133,7 @@ LSD.Widget.Grid.List.Item = new Class({
       one: {
         checkbox: {
           selector: 'input[type=checkbox]'
-        }
+        },
         /*
           states.get option links the "selected" state of item
           to a "checked" state of a checkbox. So whenever item 
@@ -158,3 +158,42 @@ new LSD.Document({
     'ul[name]': 'selectlist'
   }
 });
+
+
+
+var grid = LSD.document.getElement('grid');
+
+console.group('Information');
+/*
+  All widgets with names are automatically registered in a form in a special
+  names object that has widgets as values and their names as keys. 
+*/
+console.log('Output all field names of all widgets in grid')
+console.log('Object.keys(grid.names)', Object.keys(grid.names));
+
+/* 
+  There's also an .elements array that holds all form-associated widgets
+*/
+console.log('Output all fields')
+console.log('grid.elements', grid.elements);
+
+/*
+  Submittable widgets are the ones that have name AND they are eligible to send.
+  E.g. if it's a checkbox or radio, it should be checked to be listed in this collection 
+*/
+console.log('Output all submittable fields (checked checkboxes and inputs that have name)')
+console.log('grid.submittableElements', grid.submittableElements);
+/*
+  Selected items are magically tracked for you. Select one item and it ends up in 
+  .selectedItems array. 
+  
+  The list widget also has name, so it's submittable. That is why .getData attribute returns
+  the list selection serialized.
+*/
+console.log('Output selected items, select one, and output selected items again');
+console.log('grid.list.selectedItems', grid.list.selectedItems);
+console.log('grid.list.getData()', grid.list.getData());
+console.log('grid.list.items[0].select()', grid.list.items[0].select());
+console.log('grid.list.selectedItems', grid.list.selectedItems);
+console.log('grid.list.getData()', grid.list.getData());
+console.groupEnd('Information');
