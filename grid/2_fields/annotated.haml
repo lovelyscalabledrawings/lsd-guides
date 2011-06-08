@@ -1,0 +1,98 @@
+/ 
+  %iframe{:src => "http://jsfiddle.net/gh/get/mootools/1.2/zalun/jsFiddleGithubDemo/tree/master/Demo/embedded/result,js,html,css/"}
+  
+  :plain
+    # Your good olde forms
+    
+    So once again, a grid is actually a form. Its **action** is where
+    it sends requests to get filtered list items set. Filter conditions
+    are specified through field values and their names. 
+    
+    Form makes use of two custom attributes:
+    
+    * **transport=xhr** turns the form into an ajaxy mode where it sends
+      its contents asynchronously and waits for response. The page does not change. 
+    * **target** specifies the target for interactions. Any widget that does requests
+      first *submits* itself and then *updates* the target. So if the target is set,
+      it will be updated with the contents returned from form's requests.
+      
+      Target attribute accepts any selector. It does its searches in a widget
+      tree by default, so "grid list" selector finds the widget that is initialized
+      on "ul" element. That relation was set on the first step.
+      
+%form.grid{:action => "/people", :transport => "xhr", :target => "grid list"}
+  /
+    :plain
+      If we need to filter the grid by some query string, it's easy. Search field
+      here submits the whole form
+      
+      ## Custom widgets
+      
+      Here we create our first custom widget - selectlist. When it comes to selecting
+      an item from a list, it always comes down to these two cases (as in ([HTML5 command types](http://www.w3.org/TR/html5/commands.html#command-facet-type) spec):
+  %nav
+    %input{:type => "search", :name => "q"}
+    %input{:type => "submit"} Search
+    
+    / 
+      :plain
+        ## Radiogroup (&lt;select&gt;)
+        
+        A group of items where only one item can be selected at once is called a radiogroup.
+        Only the selected element sends its value with form, so query string is simply `?sort_by=Date`
+    %label Sort by:
+    %ul{:name => "sort_by"}
+      %li.selected Date
+      %li Time
+    
+    / 
+      :plain
+        ## Checkbox group (&lt;select multiple&gt;)
+      
+        A group with multiple selection is actually a list of checkboxes. So a selected item
+        can be interpreted as checked checkbox. HTML forms only send values of checkboxes that are
+        checked on. 
+      
+        In example below, selectlist widget has **multiple** attribute, that sets this kind of 
+        item relationship. There are two items selected from the start, so query string will look
+        like this: 
+        
+        `?type[]=Feed&type[]=Songs` and is interpreted as `{type: ["Feed", "Songs"]}`
+    %label Types:
+    %ul{:name => "type", :multiple => true}
+      %li.selected{:value => "Feed"} News
+      %li Photos
+      %li.selected Songs
+  /
+    :plain
+      ## A list with checkboxes 
+    
+      Selected rows should be a parameter too. So we add a name attribute here
+  %ul{:name => "people"}
+    %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "ibolmo"}
+      / 
+        We're going to add a checkbox in the beginning of each item. Checkbox is a metaphor
+        that people understand. It's like if it was inviting a user to select one or many items at once.
+        
+      %input{:type => "checkbox"}
+      %h2 
+        %a{:itemprop => "url", :href => "http://github.com/ibolmo"} 
+          %span{:itemprop => "name"} Olmo Maldonado
+    
+      %dl
+        %dt Gender
+        %dd{:itemprop => "gender"} Male
+        %dt Job title
+        %dd{:itemprop => "jobTitle"} Programmer
+        %dt Email
+        %dd
+          %a{:href => "mailto:olmo@maldonado.biz", :itemprop => "email"} olmo@maldonado.biz
+  
+    %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "subtleGradient"}
+      / And here, a checkbox
+      %input{:type => "checkbox"}
+      %h2
+        %a{:itemprop => "url", :href => "http://github.com/subtleGradient"} 
+          %span{:itemprop => "name"} Thomas Aylott
+        
+      %a{:href => "mailto:thomas@aylott.biz", :itemprop => "email"} thomas@aylott.biz

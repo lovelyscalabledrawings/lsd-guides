@@ -1,0 +1,8 @@
+name: LSD Guide to widgets
+description: First of the guides on how to get things working from ground up with LSD
+authors:
+  - Yaroslaff Fedin
+resources:
+  - /js/empty.js
+  - /css/normalize.css
+normalize_css: no

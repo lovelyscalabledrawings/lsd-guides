@@ -1,0 +1,104 @@
+<!--
+  <iframe src='http://jsfiddle.net/gh/get/mootools/1.2/zalun/jsFiddleGithubDemo/tree/master/Demo/embedded/result,js,html,css/'></iframe>
+  # Your good olde forms
+  
+  So once again, a grid is actually a form. Its **action** is where
+  it sends requests to get filtered list items set. Filter conditions
+  are specified through field values and their names. 
+  
+  Form makes use of two custom attributes:
+  
+  * **transport=xhr** turns the form into an ajaxy mode where it sends
+    its contents asynchronously and waits for response. The page does not change. 
+  * **target** specifies the target for interactions. Any widget that does requests
+    first *submits* itself and then *updates* the target. So if the target is set,
+    it will be updated with the contents returned from form's requests.
+    
+    Target attribute accepts any selector. It does its searches in a widget
+    tree by default, so "grid list" selector finds the widget that is initialized
+    on "ul" element. That relation was set on the first step.
+-->
+<form action='/people' class='grid' target='grid list' transport='xhr'>
+  <!--
+    If we need to filter the grid by some query string, it's easy. Search field
+    here submits the whole form
+    
+    ## Custom widgets
+    
+    Here we create our first custom widget - selectlist. When it comes to selecting
+    an item from a list, it always comes down to these two cases (as in ([HTML5 command types](http://www.w3.org/TR/html5/commands.html#command-facet-type) spec):
+  -->
+  <nav>
+    <input name='q' type='search' />
+    <input type='submit'>Search</input>
+    <!--
+      ## Radiogroup (&lt;select&gt;)
+      
+      A group of items where only one item can be selected at once is called a radiogroup.
+      Only the selected element sends its value with form, so query string is simply `?sort_by=Date`
+    -->
+    <label>Sort by:</label>
+    <ul name='sort_by'>
+      <li class='selected'>Date</li>
+      <li>Time</li>
+    </ul>
+    <!--
+      ## Checkbox group (&lt;select multiple&gt;)
+      
+      A group with multiple selection is actually a list of checkboxes. So a selected item
+      can be interpreted as checked checkbox. HTML forms only send values of checkboxes that are
+      checked on. 
+      
+      In example below, selectlist widget has **multiple** attribute, that sets this kind of 
+      item relationship. There are two items selected from the start, so query string will look
+      like this: 
+      
+      `?type[]=Feed&type[]=Songs` and is interpreted as `{type: ["Feed", "Songs"]}`
+    -->
+    <label>Types:</label>
+    <ul multiple='multiple' name='type'>
+      <li class='selected' value='Feed'>News</li>
+      <li>Photos</li>
+      <li class='selected'>Songs</li>
+    </ul>
+  </nav>
+  <!--
+    ## A list with checkboxes 
+    
+    Selected rows should be a parameter too. So we add a name attribute here
+  -->
+  <ul name='people'>
+    <li itemid='ibolmo' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <!--
+        We're going to add a checkbox in the beginning of each item. Checkbox is a metaphor
+        that people understand. It's like if it was inviting a user to select one or many items at once.
+      -->
+      <input type='checkbox' />
+      <h2>
+        <a href='http://github.com/ibolmo' itemprop='url'>
+          <span itemprop='name'>Olmo Maldonado</span>
+        </a>
+      </h2>
+      <dl>
+        <dt>Gender</dt>
+        <dd itemprop='gender'>Male</dd>
+        <dt>Job title</dt>
+        <dd itemprop='jobTitle'>Programmer</dd>
+        <dt>Email</dt>
+        <dd>
+          <a href='mailto:olmo@maldonado.biz' itemprop='email'>olmo@maldonado.biz</a>
+        </dd>
+      </dl>
+    </li>
+    <li itemid='subtleGradient' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <!-- And here, a checkbox -->
+      <input type='checkbox' />
+      <h2>
+        <a href='http://github.com/subtleGradient' itemprop='url'>
+          <span itemprop='name'>Thomas Aylott</span>
+        </a>
+      </h2>
+      <a href='mailto:thomas@aylott.biz' itemprop='email'>thomas@aylott.biz</a>
+    </li>
+  </ul>
+</form>

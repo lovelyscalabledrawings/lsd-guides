@@ -1,0 +1,48 @@
+<!--
+  # A markup for data
+  We'll start simple. Let's have a grid section wrapper around a list of bulleted items.
+  Items are full of microdata (dev.w3.org/html5/md/) that defines attributes of models rendered in html
+  <br>
+  The first step is to convert HTML elements into Widget tree. Some elements are translated into widgets
+  automatically (such as &ltinput&gt;, &lt;form&gt;, &lt;textarea&gt; and &lt;body&gt;). Those have very
+  well defined behavior and so they simply work. But what about custom widgets you want to make?
+  <br>
+  The solution is the **mutation** of elements. Mutation is a pair of selector and widget class name.
+  So every element in document is matched against current mutation selectors and if matches, the element
+  gets convereted into that specific class.
+-->
+<section class='grid'>
+  <ul>
+    <li itemid='ibolmo' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <h2>
+        <a href='http://github.com/ibolmo' itemprop='url'>
+          <span itemprop='name'>Olmo Maldonado</span>
+        </a>
+      </h2>
+      <dl>
+        <dt>Gender</dt>
+        <dd itemprop='gender'>Male</dd>
+        <dt>Job title</dt>
+        <dd itemprop='jobTitle'>Programmer</dd>
+        <dt>Email</dt>
+        <dd>
+          <a href='mailto:olmo@maldonado.biz' itemprop='email'>olmo@maldonado.biz</a>
+        </dd>
+      </dl>
+    </li>
+    <!--
+      Official schema.org person reference at http://schema.org/Person has detailed explanation
+      of property names and their values. document.getItems('person') returns two following serialized
+      &lt;lt&gt; elements as items.
+      **itemid** is important, because it is used in query strings and as a value
+    -->
+    <li itemid='subtleGradient' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <h2>
+        <a href='http://github.com/subtleGradient' itemprop='url'>
+          <span itemprop='name'>Thomas Aylott</span>
+        </a>
+      </h2>
+      <a href='mailto:thomas@aylott.biz' itemprop='email'>thomas@aylott.biz</a>
+    </li>
+  </ul>
+</section>

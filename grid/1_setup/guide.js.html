@@ -1,0 +1,384 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Build your own grid</title>
+    <style>
+      html, body {
+        min-height: 100%;
+        line-height: 1.5; }
+      
+      p, h1, h2, h3, ol, li, ul, dt, dd, dl, body, html {
+        padding: 0;
+        margin: 0; }
+        
+      p + br {
+        display: none;
+      }
+      
+      body {
+        width: 40%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        background: #BFA730;
+        font-family: Helvetica; }
+        body:after {
+          content: ".";
+          font-size: 0.01em;
+          line-height: 0.01em;
+          display: block;
+          clear: both; }
+      
+      figure#relations h2 ~ h2 {
+        margin-top: 1.5em; }
+      
+      body > * {
+        padding-left: 6%;
+        padding-right: 6%; }
+      
+      html {
+        background: #FFC873; }
+      
+      header {
+        background: rgba(255, 255, 255, 0.1);
+        display: block; }
+        header dl {
+          margin-top: 2em;
+          font-size: 0.75em;
+          line-height: 2em;
+          overflow: hidden; }
+          header dl dt {
+            width: 5em;
+            font-weight: bold; }
+      
+      section {
+        float: left;
+        clear: both;
+        width: 88%; }
+      
+      p, dl, li {
+        color: #665504;
+        font-weight: normal; }
+      
+      a {
+        color: #BF7330; }
+        a:hover {
+          color: #FF7800; }
+        a:visited {
+          color: #A64E00; }
+      
+      p {
+        margin-top: 1.5em; }
+      
+      h1 {
+        font-size: 2em; }
+      
+      h2 {
+        font-size: 1em; }
+      
+      h1, h2, h3 {
+        color: #A41717; }
+      
+      ol, li {
+        margin-left: 1em; }
+      
+      body > p, body > h1, body > h2 {
+        clear: left; }
+      
+      header {
+        padding-bottom: 1em;
+        overflow: hidden; }
+      
+      dl {
+        clear: left; }
+        dl dt, dl dd {
+          float: left; }
+        dl dt {
+          clear: left; }
+        dl dd {
+          margin-left: 1em; }
+      
+      figure {
+        display: block;
+        float: right;
+        margin-right: -140%;
+        width: 122.75%;
+        clear: right;
+        padding: 1.5em 5% 3em; }
+        figure > ol {
+          text-shadow: 0 1px 0 #FFDE40;
+          -moz-text-shadow: 0 1px 0 #FFDE40;
+          -webkit-text-shadow: 0 1px 0 #FFDE40;
+          width: 7.5%;
+          text-align: right;
+          float: left;
+          font-size: 0.8em;
+          -webkit-border-radius: 0.2em;
+          background: rgba(125, 125, 125, 0.4);
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          list-style: none;
+          margin-left: -9.25%; }
+          figure > ol li {
+            margin: 0; }
+        figure > code, figure > ol {
+          font-size: 1em;
+          font-family: monospace; }
+        figure > code {
+          white-space: pre; }
+      
+      body .hll {
+        background-color: #ffffcc; }
+      body .c {
+        color: #408080;
+        font-style: italic; }
+      body .err {
+        border: 1px solid #FF0000; }
+      body .k {
+        color: #954121; }
+      body .o {
+        color: #666666; }
+      body .cm {
+        color: #408080;
+        font-style: italic; }
+      body .cp {
+        color: #BC7A00; }
+      body .c1, body .cs {
+        color: #408080;
+        font-style: italic; }
+      body .gd {
+        color: #A00000; }
+      body .ge {
+        font-style: italic; }
+      body .gr {
+        color: #FF0000; }
+      body .gh {
+        color: #000080;
+        font-weight: bold; }
+      body .gi {
+        color: #00A000; }
+      body .go {
+        color: #808080; }
+      body .gp {
+        color: #000080;
+        font-weight: bold; }
+      body .gs {
+        font-weight: bold; }
+      body .gu {
+        color: #800080;
+        font-weight: bold; }
+      body .gt {
+        color: #0040D0; }
+      body .kc {
+        color: #954121; }
+      body .kd, body .kn {
+        color: #954121;
+        font-weight: bold; }
+      body .kp {
+        color: #954121; }
+      body .kr {
+        color: #954121;
+        font-weight: bold; }
+      body .kt {
+        color: #B00040; }
+      body .m {
+        color: #666666; }
+      body .s {
+        color: #219161; }
+      body .na {
+        color: #7D9029; }
+      body .nb {
+        color: #954121; }
+      body .nc {
+        color: #0000FF;
+        font-weight: bold; }
+      body .no {
+        color: #880000; }
+      body .nd {
+        color: #AA22FF; }
+      body .ni {
+        color: #999999;
+        font-weight: bold; }
+      body .ne {
+        color: #D2413A;
+        font-weight: bold; }
+      body .nf {
+        color: #0000FF; }
+      body .nl {
+        color: #A0A000; }
+      body .nn {
+        color: #0000FF;
+        font-weight: bold; }
+      body .nt {
+        color: #954121;
+        font-weight: bold; }
+      body .nv {
+        color: #19469D; }
+      body .ow {
+        color: #AA22FF;
+        font-weight: bold; }
+      body .w {
+        color: #bbbbbb; }
+      body .mf, body .mh, body .mi, body .mo {
+        color: #666666; }
+      body .sb, body .sc {
+        color: #219161; }
+      body .sd {
+        color: #219161;
+        font-style: italic; }
+      body .s2 {
+        color: #219161; }
+      body .se {
+        color: #BB6622;
+        font-weight: bold; }
+      body .sh {
+        color: #219161; }
+      body .si {
+        color: #BB6688;
+        font-weight: bold; }
+      body .sx {
+        color: #954121; }
+      body .sr {
+        color: #BB6688; }
+      body .s1 {
+        color: #219161; }
+      body .ss {
+        color: #19469D; }
+      body .bp {
+        color: #954121; }
+      body .vc, body .vg, body .vi {
+        color: #19469D; }
+      body .il {
+        color: #666666; }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h1>Set up widget classes</h1>
+      
+      <p>A grid is actually a form, if you look at it. It has various
+      fields that define how data is filtered, just like form do.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+      </ol>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><strong>fieldset</strong> pseudo makes widget know about related form elements
+      and use them. <strong>form</strong> pseudo makes fields know that this widget
+      is their form.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>6</li>
+      </ol>
+      <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">],</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>The main function of a grid is to operate over a list of items.
+      Has-one option defines a singular relation on a widget named <em>list</em></p>
+      
+      <p><strong>selector</strong> expresses the criterias on which widget would match.
+      Here it&rsquo;s simply a <em>list</em> which means that it will look for a widget
+      with <em>list</em> tagName.</p>
+      
+      <p>When the widget is matched for a singular relation, it becomes
+      accessible as grid.list.</p>
+      
+      <p><strong>mutate</strong> option serves the purpose of converting grid&rsquo;s child
+      &lt;ul&gt; element into a list widget.</p>
+      
+      <p><strong>source</strong> here specifies the widget class. so <em>grid-list</em>
+      often means LSD.Widget.Grid.List.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+      </ol>
+      <code>    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">list</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutate</span><span class="o">:</span> <span class="s1">&#39;&gt; ul&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>The list widget is pretty simple. It consists of a widget
+      definition, pseudoclass that turns it into a list mode,
+      and a mutation on items. The important thing here, is that
+      it could very well be a table with &lsquo;table&rsquo; as tag and &lsquo;tbody > tr&rsquo;
+      as mutation.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>19</li>
+        <li>20</li>
+        <li>21</li>
+      </ol>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><strong>list</strong> pseudo makes widget aware of <em>items</em>, usually its direct
+      child widgets. They become accessible as list.items array.</p>
+      
+      <p>Once again, mutation sets all &ldquo;li&rdquo; children as item widgets of
+      LSD.Widget.Grid.List.Item class.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>22</li>
+        <li>23</li>
+        <li>24</li>
+        <li>25</li>
+        <li>26</li>
+        <li>27</li>
+        <li>28</li>
+        <li>29</li>
+        <li>30</li>
+        <li>31</li>
+        <li>32</li>
+      </ol>
+      <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutate</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><strong>item</strong> pseudoclass doesn&rsquo;t do much to widget itself, but
+      make it findable by parent list widget.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>34</li>
+        <li>35</li>
+        <li>36</li>
+        <li>37</li>
+        <li>38</li>
+        <li>39</li>
+      </ol>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>New document will set domready callbacks,
+      traverse the document element, and set the body widget.</p>
+      
+      <p>Mutations will be transferred to body widget, so whenever
+      an element with &lsquo;grid&rsquo; class is found, it gets converted into
+      grid widget.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>41</li>
+        <li>42</li>
+        <li>43</li>
+        <li>44</li>
+        <li>45</li>
+      </ol>
+      <code><span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+  </body>
+</html>

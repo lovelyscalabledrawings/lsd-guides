@@ -1,0 +1,12 @@
+name: GuideGrid
+fullname: LSD guide to grids
+filename: grid.js
+description: How to build a grid from scratch?
+license: Public domain, http://unlicense.org
+copyright: Yaroslaff Fedin
+author: inviz
+category: Interface
+current: 0.4prealpha
+tags: [ui, svg, interface]
+sources:
+  - Source/Demo.js
