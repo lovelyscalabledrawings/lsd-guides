@@ -7,6 +7,18 @@ body {
 
 .grid {
   display: block; }
+  .grid > header, .grid > footer {
+    background: #eeeeee;
+    padding: 0.25em 1em;
+    margin: 0.15em;
+    box-shadow: 0 1px 2px #999999;
+    border-radius: 0.5em; }
+    .grid > header[disabled], .grid > footer[disabled] {
+      background: #f9f9f9; }
+  .grid > header {
+    margin-bottom: 0.5em; }
+  .grid > footer {
+    margin-top: 0.5em; }
   .grid > nav {
     overflow: hidden;
     line-height: 2em; }
