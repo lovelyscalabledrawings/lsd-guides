@@ -74,16 +74,31 @@ a {
   a:visited {
     color: #A64E00; }
 
-p {
+p + p, h2 + p, h1 + p, ul + p, ol + p{
   margin-top: 1.5em; }
+  
+p code {
+  background-color: rgba(200, 220, 200, 0.2);
+  display: inline-block;
+  -moz-border-radius: 4px;
+  -webkit-border-radius: 4px;
+  border-radius: 4px;
+  padding: 0 0.2em;
+  font-family: "monaco", "Courier New", Courier, monospace, serif;
+  font-size:0.8em;
+  line-height:1.6em;
+}
+p:last-child {
+  margin-bottom: 1.5em;
+}
 
 h1 {
   font-size: 2em; }
 
 h1 + ul {
   float: right; 
-  width: 100%;
-  margin-right: -120%;
+  width: 140%;
+  margin-right: -160%;
   margin-top: -2em;
 }
 
@@ -98,9 +113,6 @@ h1 + ul li + li{
 h2 {
   font-size: 1em; }
   
-section h2:first-child, p + h2 {
-  margin-top: 1.5em; }
-
 h1, h2, h3 {
   color: #A41717; }
 
@@ -130,8 +142,10 @@ figure {
   margin-right: -135%;
   width: 122.75%;
   clear: right;
-  padding: 0.5em 0 3em; }
+  margin-top: -0.1em;
+  padding: 0 0 3em; }
   figure > ol {
+    font-family: 0.8em/1.8em Arial;
     text-shadow: 0 1px 0 #eee;
     -moz-text-shadow: 0 1px 0 #eee;
     -webkit-text-shadow: 0 1px 0 #eee;
@@ -141,18 +155,19 @@ figure {
     width: 7.5%;
     text-align: right;
     float: left;
+    -moz-border-radius: 0.2em;
     -webkit-border-radius: 0.2em;
+    border-radius: 0.2em;
     background: rgba(125, 125, 125, 0.4);
     border: 1px solid rgba(0, 0, 0, 0.3);
     list-style: none;
     margin-left: -9.25%; }
     figure > ol li {
       margin: 0; }
-  figure > code, figure > ol {
-    font-size: 0.8em;
-    line-height: 1.2em;
-    font-family: "monaco", "Courier New", Courier, monospace, serif; }
   figure > code {
+    font-size: 1em;
+    line-height: 1.5em;
+    font-family: "monaco", "Courier New", Courier, monospace, serif;
     white-space: pre; }
 
 body .hll {

@@ -197,7 +197,7 @@ console.log('grid.submittableElements', grid.submittableElements.map(function(wi
   Selected items are magically tracked for you. Select one item and it ends up in 
   .selectedItems array. 
   
-  The list widget also has name, so it's submittable. That is why .getData attribute returns
+  The list widget also has name, so it's submittable. That is why .getData method returns
   the list selection serialized.
 */
 console.log('Output selected items, select one, and output selected items again');

@@ -5,7 +5,7 @@
   Items are full of microdata (dev.w3.org/html5/md/) that defines attributes of models rendered in html
   
   The first step is to convert HTML elements into Widget tree. Some elements are translated into widgets
-  automatically (such as &ltinput&gt;, &lt;form&gt;, &lt;textarea&gt; and &lt;body&gt;). Those have very
+  automatically (such as `<input>, <form>, <textarea> and <body>`). Those have very
   well defined behavior and so they simply work. But what about custom widgets you want to make?
   
   The solution is the **mutation** of elements. Mutation is a pair of selector and widget class name.
@@ -32,9 +32,9 @@
       </dl>
     </li>
     <!--
-      Official schema.org person reference at http://schema.org/Person has detailed explanation
-      of property names and their values. document.getItems('person') returns two following serialized
-      &lt;lt&gt; elements as items.
+      Official [schema.org Person reference](http://schema.org/Person) has detailed explanation
+      of property names and their values. `document.getItems('person')` returns two following serialized
+      `<li>` elements as items.
       **itemid** is important, because it is used in query strings and as a value
     -->
     <li itemid='subtleGradient' itemscope='itemscope' itemtype='person http://schema.org/Person'>
