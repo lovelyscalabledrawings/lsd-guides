@@ -150,7 +150,7 @@
         margin-top: -0.1em;
         padding: 0 0 3em; }
         figure > ol {
-          font-family: 0.8em/1.8em Arial;
+          font-family: 0.75em/2.25em Arial;
           text-shadow: 0 1px 0 #eee;
           -moz-text-shadow: 0 1px 0 #eee;
           -webkit-text-shadow: 0 1px 0 #eee;
@@ -163,12 +163,22 @@
           -moz-border-radius: 0.2em;
           -webkit-border-radius: 0.2em;
           border-radius: 0.2em;
-          background: rgba(125, 125, 125, 0.4);
-          border: 1px solid rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(0, 0, 0, 0.5);
           list-style: none;
           margin-left: -9.25%; }
           figure > ol li {
+            background: rgba(125, 125, 125, 0.4);
             margin: 0; }
+          figure > ol li:first-child {
+            border-top-left-radius: 0.2em; 
+            border-top-right-radius: 0.2em; }
+          figure > ol li:last-child {
+            border-bottom-left-radius: 0.2em; 
+            border-bottom-right-radius: 0.2em; }
+          figure > ol li.new {
+            background: #98B72E; }
+          figure > ol li.changed {
+            background: #FFBD40; }
         figure > code {
           font-size: 1em;
           line-height: 1.5em;
@@ -380,9 +390,9 @@
     </section>
     <figure>
       <ol>
+        <li>1</li>
+        <li>2</li>
         <li>3</li>
-        <li>4</li>
-        <li>5</li>
       </ol>
       <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;</code>
     </figure>
@@ -393,7 +403,7 @@
     </section>
     <figure>
       <ol>
-        <li>6</li>
+        <li>4</li>
       </ol>
       <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">],</span>&#x000A;</code>
     </figure>
@@ -416,6 +426,8 @@
     </section>
     <figure>
       <ol>
+        <li>5</li>
+        <li>6</li>
         <li>7</li>
         <li>8</li>
         <li>9</li>
@@ -425,8 +437,6 @@
         <li>13</li>
         <li>14</li>
         <li>15</li>
-        <li>16</li>
-        <li>17</li>
       </ol>
       <code>    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">list</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; ul&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>
@@ -439,9 +449,9 @@
     </section>
     <figure>
       <ol>
-        <li>19</li>
-        <li>20</li>
-        <li>21</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
       </ol>
       <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;</code>
     </figure>
@@ -454,6 +464,9 @@
     </section>
     <figure>
       <ol>
+        <li>19</li>
+        <li>20</li>
+        <li>21</li>
         <li>22</li>
         <li>23</li>
         <li>24</li>
@@ -462,9 +475,6 @@
         <li>27</li>
         <li>28</li>
         <li>29</li>
-        <li>30</li>
-        <li>31</li>
-        <li>32</li>
       </ol>
       <code>    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>
@@ -474,12 +484,12 @@
     </section>
     <figure>
       <ol>
+        <li>30</li>
+        <li>31</li>
+        <li>32</li>
+        <li>33</li>
         <li>34</li>
         <li>35</li>
-        <li>36</li>
-        <li>37</li>
-        <li>38</li>
-        <li>39</li>
       </ol>
       <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">]</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>
@@ -495,11 +505,11 @@
     </section>
     <figure>
       <ol>
-        <li>41</li>
-        <li>42</li>
-        <li>43</li>
-        <li>44</li>
-        <li>45</li>
+        <li>36</li>
+        <li>37</li>
+        <li>38</li>
+        <li>39</li>
+        <li>40</li>
       </ol>
       <code><span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>
@@ -511,9 +521,9 @@
     </section>
     <figure>
       <ol>
-        <li>48</li>
-        <li>49</li>
-        <li>50</li>
+        <li>41</li>
+        <li>42</li>
+        <li>43</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">group</span><span class="p">(</span><span class="s1">&#39;Information&#39;</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Items found in document:&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;document.getItems()&#39;</span><span class="p">,</span> <span class="nb">document</span><span class="p">.</span><span class="nx">getItems</span><span class="p">());</span>&#x000A;</code>
     </figure>
@@ -529,9 +539,9 @@
     </section>
     <figure>
       <ol>
-        <li>52</li>
-        <li>53</li>
-        <li>54</li>
+        <li>44</li>
+        <li>45</li>
+        <li>46</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Number of items in list&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;LSD.document.getElements(&quot;grid list item&quot;).length&#39;</span><span class="p">,</span> <span class="nx">LSD</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElements</span><span class="p">(</span><span class="s2">&quot;grid list item&quot;</span><span class="p">).</span><span class="nx">length</span><span class="p">);</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;LSD.document.getElement(&quot;grid&quot;).list.items.length&#39;</span><span class="p">,</span> <span class="nx">LSD</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElement</span><span class="p">(</span><span class="s2">&quot;grid&quot;</span><span class="p">).</span><span class="nx">list</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span><span class="p">);</span>&#x000A;</code>
     </figure>
@@ -543,9 +553,9 @@
     </section>
     <figure>
       <ol>
-        <li>56</li>
-        <li>57</li>
-        <li>58</li>
+        <li>47</li>
+        <li>48</li>
+        <li>49</li>
       </ol>
       <code><span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;Widget tag names in document&#39;</span><span class="p">)</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s1">&#39;LSD.document.getElements(&quot;*&quot;).map(function(w) { return w.tagName })&#39;</span><span class="p">,</span> <span class="nx">LSD</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">getElements</span><span class="p">(</span><span class="s2">&quot;*&quot;</span><span class="p">).</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">w</span><span class="p">)</span> <span class="p">{</span> <span class="k">return</span> <span class="nx">w</span><span class="p">.</span><span class="nx">tagName</span> <span class="p">}))</span>&#x000A;<span class="nx">console</span><span class="p">.</span><span class="nx">groupEnd</span><span class="p">(</span><span class="s1">&#39;Information&#39;</span><span class="p">);</span>&#x000A;</code>
     </figure>

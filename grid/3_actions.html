@@ -150,7 +150,7 @@
         margin-top: -0.1em;
         padding: 0 0 3em; }
         figure > ol {
-          font-family: 0.8em/1.8em Arial;
+          font-family: 0.75em/2.25em Arial;
           text-shadow: 0 1px 0 #eee;
           -moz-text-shadow: 0 1px 0 #eee;
           -webkit-text-shadow: 0 1px 0 #eee;
@@ -163,12 +163,22 @@
           -moz-border-radius: 0.2em;
           -webkit-border-radius: 0.2em;
           border-radius: 0.2em;
-          background: rgba(125, 125, 125, 0.4);
-          border: 1px solid rgba(0, 0, 0, 0.3);
+          border: 1px solid rgba(0, 0, 0, 0.5);
           list-style: none;
           margin-left: -9.25%; }
           figure > ol li {
+            background: rgba(125, 125, 125, 0.4);
             margin: 0; }
+          figure > ol li:first-child {
+            border-top-left-radius: 0.2em; 
+            border-top-right-radius: 0.2em; }
+          figure > ol li:last-child {
+            border-bottom-left-radius: 0.2em; 
+            border-bottom-right-radius: 0.2em; }
+          figure > ol li.new {
+            background: #98B72E; }
+          figure > ol li.changed {
+            background: #FFBD40; }
         figure > code {
           font-size: 1em;
           line-height: 1.5em;
@@ -302,6 +312,18 @@
   </head>
   <body>
     <section>
+      <h1>Step 2: Form fields</h1>
+      
+      <ul>
+      <li><a href="2_fields.html">&larr; Previous step</a></li>
+      <li><a href="https://github.com/lovelyscalabledrawings/lsd-guides/tree/gh-pages/grid/3_actions/source">Source of this page</a></li>
+      <li><a href="http://jsfiddle.net/Inviz/pYRda">Demo on jsFiddle</a></li>
+      </ul>
+      
+      
+      <iframe class="high" src="http://jsfiddle.net/Inviz/pYRda/embedded/result,js,html,css/"></iframe>
+    </section>
+    <section>
       <h2>This needs to be more interactive</h2>
       
       <p>Now when we&rsquo;ve managed to set up a working widget tree,
@@ -316,26 +338,26 @@
     </section>
     <figure>
       <ol>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-        <li>11</li>
-        <li>12</li>
-        <li>13</li>
-        <li>14</li>
-        <li>15</li>
-        <li>16</li>
-        <li>17</li>
-        <li>18</li>
-        <li>19</li>
-        <li>20</li>
+        <li class='old'>1</li>
+        <li class='old'>2</li>
+        <li class='old'>3</li>
+        <li class='old'>4</li>
+        <li class='old'>5</li>
+        <li class='old'>6</li>
+        <li class='old'>7</li>
+        <li class='old'>8</li>
+        <li class='old'>9</li>
+        <li class='old'>10</li>
+        <li class='old'>11</li>
+        <li class='old'>12</li>
+        <li class='old'>13</li>
+        <li class='old'>14</li>
+        <li class='old'>15</li>
+        <li class='old'>16</li>
+        <li class='old'>17</li>
+        <li class='old'>18</li>
+        <li class='old'>19</li>
+        <li class='old'>20</li>
       </ol>
       <code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&#39;/people&#39;</span> <span class="na">class=</span><span class="s">&#39;grid&#39;</span> <span class="na">target=</span><span class="s">&#39;grid list&#39;</span> <span class="na">transport=</span><span class="s">&#39;xhr&#39;</span><span class="nt">&gt;</span>&#x000A;  <span class="nt">&lt;nav&gt;</span>&#x000A;    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&#39;q&#39;</span> <span class="na">type=</span><span class="s">&#39;search&#39;</span> <span class="nt">/&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span><span class="nt">&gt;</span>Send<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;fieldset&gt;</span>&#x000A;      <span class="nt">&lt;label&gt;</span>Sort by:<span class="nt">&lt;/label&gt;</span>&#x000A;      <span class="nt">&lt;ul</span> <span class="na">name=</span><span class="s">&#39;sort_by&#39;</span><span class="nt">&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li&gt;</span>Time<span class="nt">&lt;/li&gt;</span>&#x000A;      <span class="nt">&lt;/ul&gt;</span>&#x000A;    <span class="nt">&lt;/fieldset&gt;</span>&#x000A;    <span class="nt">&lt;fieldset&gt;</span>&#x000A;      <span class="nt">&lt;label&gt;</span>Types:<span class="nt">&lt;/label&gt;</span>&#x000A;      <span class="nt">&lt;ul</span> <span class="na">multiple=</span><span class="s">&#39;multiple&#39;</span> <span class="na">name=</span><span class="s">&#39;type&#39;</span><span class="nt">&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span> <span class="na">value=</span><span class="s">&#39;Feed&#39;</span><span class="nt">&gt;</span>News<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li&gt;</span>Photos<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span><span class="nt">&gt;</span>Songs<span class="nt">&lt;/li&gt;</span>&#x000A;      <span class="nt">&lt;/ul&gt;</span>&#x000A;    <span class="nt">&lt;/fieldset&gt;</span>&#x000A;  <span class="nt">&lt;/nav&gt;</span>&#x000A;</code>
     </figure>
@@ -348,7 +370,7 @@
     </section>
     <figure>
       <ol>
-        <li>21</li>
+        <li class='new'>21</li>
       </ol>
       <code>  <span class="nt">&lt;header&gt;</span>&#x000A;</code>
     </figure>
@@ -358,10 +380,10 @@
     </section>
     <figure>
       <ol>
-        <li>22</li>
-        <li>23</li>
-        <li>24</li>
-        <li>25</li>
+        <li class='new'>22</li>
+        <li class='new'>23</li>
+        <li class='new'>24</li>
+        <li class='new'>25</li>
       </ol>
       <code>    <span class="nt">&lt;label&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      Select all&#x000A;    <span class="nt">&lt;/label&gt;</span>&#x000A;</code>
     </figure>
@@ -372,38 +394,38 @@
     </section>
     <figure>
       <ol>
-        <li>26</li>
-        <li>27</li>
-        <li>28</li>
-        <li>29</li>
-        <li>30</li>
-        <li>31</li>
-        <li>32</li>
-        <li>33</li>
-        <li>34</li>
-        <li>35</li>
-        <li>36</li>
-        <li>37</li>
-        <li>38</li>
-        <li>39</li>
-        <li>40</li>
-        <li>41</li>
-        <li>42</li>
-        <li>43</li>
-        <li>44</li>
-        <li>45</li>
-        <li>46</li>
-        <li>47</li>
-        <li>48</li>
-        <li>49</li>
-        <li>50</li>
-        <li>51</li>
-        <li>52</li>
-        <li>53</li>
-        <li>54</li>
-        <li>55</li>
-        <li>56</li>
-        <li>57</li>
+        <li class='new'>26</li>
+        <li class='new'>27</li>
+        <li class='new'>28</li>
+        <li class='old'>29</li>
+        <li class='old'>30</li>
+        <li class='old'>31</li>
+        <li class='old'>32</li>
+        <li class='old'>33</li>
+        <li class='old'>34</li>
+        <li class='old'>35</li>
+        <li class='old'>36</li>
+        <li class='old'>37</li>
+        <li class='old'>38</li>
+        <li class='old'>39</li>
+        <li class='old'>40</li>
+        <li class='old'>41</li>
+        <li class='old'>42</li>
+        <li class='old'>43</li>
+        <li class='old'>44</li>
+        <li class='old'>45</li>
+        <li class='old'>46</li>
+        <li class='old'>47</li>
+        <li class='old'>48</li>
+        <li class='old'>49</li>
+        <li class='old'>50</li>
+        <li class='old'>51</li>
+        <li class='old'>52</li>
+        <li class='old'>53</li>
+        <li class='old'>54</li>
+        <li class='old'>55</li>
+        <li class='old'>56</li>
+        <li class='old'>57</li>
       </ol>
       <code>    <span class="nt">&lt;button</span> <span class="na">execute=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">href=</span><span class="s">&#39;/person/followships&#39;</span> <span class="na">method=</span><span class="s">&#39;post&#39;</span> <span class="na">transport=</span><span class="s">&#39;xhr&#39;</span><span class="nt">&gt;&lt;/button&gt;</span>&#x000A;  <span class="nt">&lt;/header&gt;</span>&#x000A;  <span class="nt">&lt;ul</span> <span class="na">name=</span><span class="s">&#39;people&#39;</span><span class="nt">&gt;</span>&#x000A;    <span class="nt">&lt;li</span> <span class="na">itemid=</span><span class="s">&#39;ibolmo&#39;</span> <span class="na">itemscope=</span><span class="s">&#39;itemscope&#39;</span> <span class="na">itemtype=</span><span class="s">&#39;person http://schema.org/Person&#39;</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      <span class="nt">&lt;h2&gt;</span>&#x000A;        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;http://github.com/ibolmo&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;url&#39;</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">&#39;name&#39;</span><span class="nt">&gt;</span>Olmo Maldonado<span class="nt">&lt;/span&gt;</span>&#x000A;        <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;/h2&gt;</span>&#x000A;      <span class="nt">&lt;dl&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Gender<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd</span> <span class="na">itemprop=</span><span class="s">&#39;gender&#39;</span><span class="nt">&gt;</span>Male<span class="nt">&lt;/dd&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Job title<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd</span> <span class="na">itemprop=</span><span class="s">&#39;jobTitle&#39;</span><span class="nt">&gt;</span>Programmer<span class="nt">&lt;/dd&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Email<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd&gt;</span>&#x000A;          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;mailto:olmo@maldonado.biz&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;email&#39;</span><span class="nt">&gt;</span>olmo@maldonado.biz<span class="nt">&lt;/a&gt;</span>&#x000A;        <span class="nt">&lt;/dd&gt;</span>&#x000A;      <span class="nt">&lt;/dl&gt;</span>&#x000A;    <span class="nt">&lt;/li&gt;</span>&#x000A;    <span class="nt">&lt;li</span> <span class="na">itemid=</span><span class="s">&#39;subtleGradient&#39;</span> <span class="na">itemscope=</span><span class="s">&#39;itemscope&#39;</span> <span class="na">itemtype=</span><span class="s">&#39;person http://schema.org/Person&#39;</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      <span class="nt">&lt;h2&gt;</span>&#x000A;        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;http://github.com/subtleGradient&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;url&#39;</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">&#39;name&#39;</span><span class="nt">&gt;</span>Thomas Aylott<span class="nt">&lt;/span&gt;</span>&#x000A;        <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;/h2&gt;</span>&#x000A;      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;mailto:thomas@aylott.biz&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;email&#39;</span><span class="nt">&gt;</span>thomas@aylott.biz<span class="nt">&lt;/a&gt;</span>&#x000A;    <span class="nt">&lt;/li&gt;</span>&#x000A;  <span class="nt">&lt;/ul&gt;</span>&#x000A;</code>
     </figure>
@@ -416,53 +438,52 @@
     </section>
     <figure>
       <ol>
-        <li>58</li>
-        <li>59</li>
-        <li>60</li>
-        <li>61</li>
-        <li>62</li>
-        <li>63</li>
-        <li>64</li>
-        <li>65</li>
-        <li>66</li>
+        <li class='new'>58</li>
+        <li class='new'>59</li>
+        <li class='new'>60</li>
+        <li class='new'>61</li>
+        <li class='new'>62</li>
+        <li class='new'>63</li>
+        <li class='new'>64</li>
+        <li class='new'>65</li>
+        <li class='old'>66</li>
       </ol>
       <code>  <span class="nt">&lt;footer&gt;</span>&#x000A;    <span class="nt">&lt;label&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      Select all&#x000A;    <span class="nt">&lt;/label&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">action=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">action=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;&lt;/button&gt;</span>&#x000A;  <span class="nt">&lt;/footer&gt;</span>&#x000A;<span class="nt">&lt;/form&gt;</span>&#x000A;</code>
     </figure>
     <figure>
       <ol>
-        <li>1</li>
-        <li>2</li>
-        <li>3</li>
-        <li>4</li>
-        <li>5</li>
-        <li>6</li>
-        <li>7</li>
-        <li>8</li>
-        <li>9</li>
-        <li>10</li>
-        <li>11</li>
-        <li>12</li>
-        <li>13</li>
-        <li>14</li>
-        <li>15</li>
-        <li>16</li>
-        <li>17</li>
-        <li>18</li>
-        <li>19</li>
-        <li>20</li>
-        <li>21</li>
-        <li>22</li>
-        <li>23</li>
-        <li>24</li>
-        <li>25</li>
-        <li>26</li>
-        <li>27</li>
-        <li>28</li>
-        <li>29</li>
-        <li>30</li>
-        <li>31</li>
+        <li class='old'>1</li>
+        <li class='old'>2</li>
+        <li class='old'>3</li>
+        <li class='old'>4</li>
+        <li class='old'>5</li>
+        <li class='old'>6</li>
+        <li class='old'>7</li>
+        <li class='old'>8</li>
+        <li class='old'>9</li>
+        <li class='old'>10</li>
+        <li class='old'>11</li>
+        <li class='old'>12</li>
+        <li class='old'>13</li>
+        <li class='old'>14</li>
+        <li class='old'>15</li>
+        <li class='old'>16</li>
+        <li class='old'>17</li>
+        <li class='old'>18</li>
+        <li class='old'>19</li>
+        <li class='old'>20</li>
+        <li class='old'>21</li>
+        <li class='old'>22</li>
+        <li class='old'>23</li>
+        <li class='old'>24</li>
+        <li class='old'>25</li>
+        <li class='old'>26</li>
+        <li class='old'>27</li>
+        <li class='old'>28</li>
+        <li class='old'>29</li>
+        <li class='changed'>30</li>
       </ol>
-      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">),</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;selectlist-option&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span><span class="p">.</span><span class="nx">Option</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;option&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">)</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">list</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; ul&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list&#39;</span><span class="p">,</span>&#x000A;</code>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">),</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;selectlist-option&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span><span class="p">.</span><span class="nx">Option</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;option&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">)</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">list</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; ul&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list&#39;</span><span class="p">,</span>&#x000A;</code>
     </figure>
     <section>
       <p>A widget with <strong>list</strong> pseudoclass will fire <code>set</code> event
@@ -477,10 +498,10 @@
     </section>
     <figure>
       <ol>
-        <li>33</li>
-        <li>34</li>
-        <li>35</li>
-        <li>36</li>
+        <li class='new'>31</li>
+        <li class='new'>32</li>
+        <li class='new'>33</li>
+        <li class='new'>34</li>
       </ol>
       <code>          <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span><span class="p">,</span>&#x000A;            <span class="nx">unset</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span>&#x000A;          <span class="p">},</span>&#x000A;</code>
     </figure>
@@ -497,12 +518,12 @@
     </section>
     <figure>
       <ol>
-        <li>37</li>
-        <li>38</li>
-        <li>39</li>
-        <li>40</li>
-        <li>41</li>
-        <li>42</li>
+        <li class='new'>35</li>
+        <li class='new'>36</li>
+        <li class='new'>37</li>
+        <li class='new'>38</li>
+        <li class='new'>39</li>
+        <li class='new'>40</li>
       </ol>
       <code>          <span class="nx">callbacks</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">add</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span><span class="p">,</span>&#x000A;            <span class="nx">remove</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">},</span>&#x000A;</code>
     </figure>
@@ -513,16 +534,16 @@
     </section>
     <figure>
       <ol>
-        <li>43</li>
-        <li>44</li>
-        <li>45</li>
-        <li>46</li>
-        <li>47</li>
-        <li>48</li>
-        <li>49</li>
-        <li>50</li>
-        <li>51</li>
-        <li>52</li>
+        <li class='new'>41</li>
+        <li class='new'>42</li>
+        <li class='new'>43</li>
+        <li class='new'>44</li>
+        <li class='new'>45</li>
+        <li class='old'>46</li>
+        <li class='old'>47</li>
+        <li class='old'>48</li>
+        <li class='old'>49</li>
+        <li class='old'>50</li>
       </ol>
       <code>      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">bars</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; header, &gt; footer&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-bar&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>
@@ -532,56 +553,11 @@
     </section>
     <figure>
       <ol>
-        <li>54</li>
-        <li>55</li>
-        <li>56</li>
+        <li class='new'>51</li>
+        <li class='new'>52</li>
+        <li class='new'>53</li>
       </ol>
       <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">Bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>&#x000A;</code>
-    </figure>
-    <section><p>The main purpose of the grid bar is to</p></section>
-    <figure>
-      <ol>
-        <li>58</li>
-        <li>59</li>
-        <li>60</li>
-        <li>61</li>
-      </ol>
-      <code>    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">buttons</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>&#x000A;</code>
-    </figure>
-    <section>
-      <p><code>states.set</code> option mirrors <code>disabled</code> state of the bar on to
-      its buttons. So whenever bar gets disabled or enabled, buttons
-      inside of it do the same.</p>
-    </section>
-    <figure>
-      <ol>
-        <li>62</li>
-        <li>63</li>
-        <li>64</li>
-        <li>65</li>
-        <li>66</li>
-      </ol>
-      <code>          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;disabled&#39;</span><span class="o">:</span> <span class="s1">&#39;disabled&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">},</span>&#x000A;</code>
-    </figure>
-    <section>
-      <p>If you remember, <code>form-associated</code> pseudo class makes form
-      (and the grid is a form) recognize the widget as its element.</p>
-      
-      <p>Usually, it is used to add values to form&rsquo;s dataset, but
-      here buttons dont really have values.</p>
-      
-      <p>The other effect of widget being form associated, is that
-      it recieves <code>widget.form</code> property that makes form (and grid)
-      easily accessible for buttons. It will be used below.</p>
-    </section>
-    <figure>
-      <ol>
-        <li>67</li>
-        <li>68</li>
-        <li>69</li>
-        <li>70</li>
-      </ol>
-      <code>          <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form-associated&#39;</span><span class="p">]</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">},</span>&#x000A;</code>
     </figure>
     <section>
       <p><strong>chain</strong> option is a way to define a queue of actions
@@ -607,7 +583,7 @@
     </section>
     <figure>
       <ol>
-        <li>71</li>
+        <li class='new'>54</li>
       </ol>
       <code>    <span class="nx">chain</span><span class="o">:</span> <span class="p">{</span>&#x000A;</code>
     </figure>
@@ -621,7 +597,7 @@
     </section>
     <figure>
       <ol>
-        <li>72</li>
+        <li class='new'>55</li>
       </ol>
       <code>      <span class="nx">perform</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;</code>
     </figure>
@@ -635,8 +611,8 @@
     </section>
     <figure>
       <ol>
-        <li>73</li>
-        <li>74</li>
+        <li class='new'>56</li>
+        <li class='new'>57</li>
       </ol>
       <code>        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>&#x000A;          <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">action</span><span class="p">,</span> <span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">};</span>&#x000A;</code>
     </figure>
@@ -654,10 +630,10 @@
     </section>
     <figure>
       <ol>
-        <li>75</li>
-        <li>76</li>
-        <li>77</li>
-        <li>78</li>
+        <li class='new'>58</li>
+        <li class='new'>59</li>
+        <li class='new'>60</li>
+        <li class='new'>61</li>
       </ol>
       <code>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>&#x000A;          <span class="k">return</span> <span class="p">{</span><span class="nx">arguments</span><span class="o">:</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">getData</span><span class="p">()},</span> <span class="nx">priority</span><span class="o">:</span> <span class="mi">10</span><span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">},</span>&#x000A;</code>
     </figure>
@@ -671,16 +647,95 @@
     </section>
     <figure>
       <ol>
-        <li>80</li>
-        <li>81</li>
-        <li>82</li>
-        <li>83</li>
-        <li>84</li>
-        <li>85</li>
-        <li>86</li>
-        <li>87</li>
+        <li class='new'>63</li>
+        <li class='new'>64</li>
+        <li class='new'>65</li>
+        <li class='new'>66</li>
+        <li class='new'>67</li>
+        <li class='new'>68</li>
+        <li class='new'>69</li>
+        <li class='new'>70</li>
+        <li class='new'>71</li>
       </ol>
-      <code>      <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;        <span class="k">return</span> <span class="p">{</span>&#x000A;          <span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">,</span>&#x000A;          <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;submit&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">},</span>&#x000A;</code>
+      <code>      <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;        <span class="k">return</span> <span class="p">{</span>&#x000A;          <span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">,</span>&#x000A;          <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;submit&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">},</span>&#x000A;&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;</code>
+    </figure>
+    <section>
+      <h2>Select all checkbox</h2>
+      
+      <p>A bar may have a checkbox that will select all items in a grid list
+      on check and unselect all items if on uncheck.</p>
+    </section>
+    <figure>
+      <ol>
+        <li class='new'>72</li>
+        <li class='new'>73</li>
+        <li class='new'>74</li>
+      </ol>
+      <code>      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">checkbox</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;&gt; input[type=checkbox]&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><code>bulkselect</code> is a link that putsa &ldquo;check&rdquo; action into a chain.
+      The target of action is set to all checkboxes of all items in
+      the list.</p>
+      
+      <p>Link also specifies <code>arguments</code> for the action as <code>this.checked</code>.
+      This will change item checkboxes checkedness state to whatever
+      checkedness state of bulk selecting checkbox is. So this action
+      may be used both to uncheck and check items.</p>
+    </section>
+    <figure>
+      <ol>
+        <li class='new'>75</li>
+        <li class='new'>76</li>
+        <li class='new'>77</li>
+        <li class='new'>78</li>
+        <li class='new'>79</li>
+        <li class='new'>80</li>
+        <li class='new'>81</li>
+        <li class='new'>82</li>
+        <li class='new'>83</li>
+        <li class='new'>84</li>
+        <li class='new'>85</li>
+        <li class='new'>86</li>
+        <li class='new'>87</li>
+      </ol>
+      <code>          <span class="nx">chain</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">bulkselect</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;              <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">)</span> <span class="p">;</span> &#x000A;                <span class="k">return</span> <span class="p">{</span><span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">map</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">item</span><span class="p">)</span> <span class="p">{</span>&#x000A;                  <span class="k">return</span> <span class="nx">item</span><span class="p">.</span><span class="nx">checkbox</span>&#x000A;                <span class="p">}),</span> <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;check&#39;</span><span class="p">,</span> <span class="nx">arguments</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">checked</span><span class="p">};</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">},</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">buttons</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><code>states.set</code> option mirrors <code>disabled</code> state of the bar on to
+      its buttons. So whenever bar gets disabled or enabled, buttons
+      inside of it do the same.</p>
+    </section>
+    <figure>
+      <ol>
+        <li class='new'>88</li>
+        <li class='new'>89</li>
+        <li class='new'>90</li>
+        <li class='new'>91</li>
+        <li class='new'>92</li>
+      </ol>
+      <code>          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;disabled&#39;</span><span class="o">:</span> <span class="s1">&#39;disabled&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>If you remember, <code>form-associated</code> pseudo class makes form
+      (and the grid is a form) recognize the widget as its element.</p>
+      
+      <p>Usually, it is used to add values to form&rsquo;s dataset, but
+      here buttons dont really have values.</p>
+      
+      <p>The other effect of widget being form associated, is that
+      it recieves <code>widget.form</code> property that makes form (and grid)
+      easily accessible for buttons. It will be used below.</p>
+    </section>
+    <figure>
+      <ol>
+        <li class='new'>93</li>
+        <li class='new'>94</li>
+        <li class='new'>95</li>
+        <li class='new'>96</li>
+        <li class='new'>97</li>
+      </ol>
+      <code>          <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form-associated&#39;</span><span class="p">]</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">},</span>&#x000A;</code>
     </figure>
     <section>
       <p>Our first real method (we didnt write any so far), will be a callback. It is defined
@@ -705,62 +760,62 @@
     </section>
     <figure>
       <ol>
-        <li>90</li>
-        <li>91</li>
-        <li>92</li>
-        <li>93</li>
-        <li>94</li>
-        <li>95</li>
-        <li>96</li>
-        <li>97</li>
-        <li>98</li>
-        <li>99</li>
-        <li>100</li>
-        <li>101</li>
-        <li>102</li>
-        <li>103</li>
-        <li>104</li>
-        <li>105</li>
-        <li>106</li>
-        <li>107</li>
-        <li>108</li>
-        <li>109</li>
-        <li>110</li>
-        <li>111</li>
-        <li>112</li>
-        <li>113</li>
-        <li>114</li>
-        <li>115</li>
-        <li>116</li>
-        <li>117</li>
-        <li>118</li>
-        <li>119</li>
-        <li>120</li>
-        <li>121</li>
-        <li>122</li>
-        <li>123</li>
-        <li>124</li>
-        <li>125</li>
-        <li>126</li>
-        <li>127</li>
-        <li>128</li>
-        <li>129</li>
-        <li>130</li>
-        <li>131</li>
-        <li>132</li>
-        <li>133</li>
-        <li>134</li>
-        <li>135</li>
-        <li>136</li>
-        <li>137</li>
-        <li>138</li>
-        <li>139</li>
-        <li>140</li>
-        <li>141</li>
-        <li>142</li>
-        <li>143</li>
-        <li>144</li>
-        <li>145</li>
+        <li class='new'>98</li>
+        <li class='new'>99</li>
+        <li class='new'>100</li>
+        <li class='new'>101</li>
+        <li class='new'>102</li>
+        <li class='new'>103</li>
+        <li class='new'>104</li>
+        <li class='new'>105</li>
+        <li class='new'>106</li>
+        <li class='new'>107</li>
+        <li class='new'>108</li>
+        <li class='old'>109</li>
+        <li class='old'>110</li>
+        <li class='old'>111</li>
+        <li class='old'>112</li>
+        <li class='old'>113</li>
+        <li class='old'>114</li>
+        <li class='old'>115</li>
+        <li class='old'>116</li>
+        <li class='old'>117</li>
+        <li class='old'>118</li>
+        <li class='old'>119</li>
+        <li class='old'>120</li>
+        <li class='old'>121</li>
+        <li class='old'>122</li>
+        <li class='old'>123</li>
+        <li class='old'>124</li>
+        <li class='old'>125</li>
+        <li class='old'>126</li>
+        <li class='old'>127</li>
+        <li class='old'>128</li>
+        <li class='old'>129</li>
+        <li class='old'>130</li>
+        <li class='old'>131</li>
+        <li class='old'>132</li>
+        <li class='old'>133</li>
+        <li class='old'>134</li>
+        <li class='old'>135</li>
+        <li class='old'>136</li>
+        <li class='old'>137</li>
+        <li class='old'>138</li>
+        <li class='old'>139</li>
+        <li class='old'>140</li>
+        <li class='old'>141</li>
+        <li class='old'>142</li>
+        <li class='old'>143</li>
+        <li class='old'>144</li>
+        <li class='old'>145</li>
+        <li class='old'>146</li>
+        <li class='old'>147</li>
+        <li class='old'>148</li>
+        <li class='old'>149</li>
+        <li class='old'>150</li>
+        <li class='old'>151</li>
+        <li class='old'>152</li>
+        <li class=''>153</li>
       </ol>
       <code>  <span class="nx">onSelectionChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;    <span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">.</span><span class="nx">length</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>&#x000A;    <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">==</span> <span class="nx">selected</span><span class="p">)</span> <span class="kd">var</span> <span class="nx">mode</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>&#x000A;    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">==</span> <span class="nx">selected</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">||</span> <span class="o">!</span><span class="nx">selected</span><span class="p">)</span> <span class="kd">var</span> <span class="nx">mode</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>&#x000A;    <span class="k">else</span> <span class="k">return</span><span class="p">;</span>&#x000A;    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">bars</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span>&#x000A;      <span class="nx">bar</span><span class="p">[</span><span class="nx">selected</span> <span class="o">?</span> <span class="s1">&#39;enable&#39;</span> <span class="o">:</span> <span class="s1">&#39;disable&#39;</span><span class="p">]();</span>&#x000A;      <span class="k">if</span> <span class="p">(</span><span class="nx">mode</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="nx">bar</span><span class="p">.</span><span class="nx">checkbox</span><span class="p">[</span><span class="nx">mode</span> <span class="o">?</span> <span class="s1">&#39;check&#39;</span> <span class="o">:</span> <span class="s1">&#39;uncheck&#39;</span><span class="p">]</span>&#x000A;    <span class="p">})</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">})</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">multiple</span><span class="o">:</span> <span class="kc">true</span>&#x000A;    <span class="p">},</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">checkbox</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;input[type=checkbox]&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">get</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;checked&#39;</span><span class="o">:</span> <span class="s1">&#39;selected&#39;</span>&#x000A;            <span class="p">},</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;selected&#39;</span><span class="o">:</span> <span class="s1">&#39;checked&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;    <span class="s1">&#39;nav ul[name]&#39;</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
     </figure>

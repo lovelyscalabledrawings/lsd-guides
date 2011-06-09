@@ -12,14 +12,12 @@
     The solution is the **mutation** of elements. Mutation is a pair of selector and widget class name.
     So every element in document is matched against current mutation selectors and if matches, the element
     gets convereted into that specific class.
-  
 %section.grid
   %ul
     %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "ibolmo"}
       %h2
         %a{:itemprop => "url", :href => "http://github.com/ibolmo"} 
           %span{:itemprop => "name"} Olmo Maldonado
-    
       %dl
         %dt Gender
         %dd{:itemprop => "gender"} Male
@@ -28,7 +26,6 @@
         %dt Email
         %dd
           %a{:href => "mailto:olmo@maldonado.biz", :itemprop => "email"} olmo@maldonado.biz
-  
     /
       Official [schema.org Person reference](http://schema.org/Person) has detailed explanation
       of property names and their values. `document.getItems('person')` returns two following serialized
@@ -39,5 +36,4 @@
       %h2
         %a{:itemprop => "url", :href => "http://github.com/subtleGradient"} 
           %span{:itemprop => "name"} Thomas Aylott
-        
       %a{:href => "mailto:thomas@aylott.biz", :itemprop => "email"} thomas@aylott.biz

@@ -18,7 +18,6 @@ LSD.Widget.Selectlist.Option = new Class({
     pseudos: Array.fast('item', 'clickable')
   }
 });
-
 LSD.Widget.Grid = new Class({
   options: {
     tag: 'grid',
@@ -52,19 +51,6 @@ LSD.Widget.Grid = new Class({
 LSD.Widget.Grid.Bar = new Class({
   options: {
     tag: 'bar',
-    has: {
-      many: {
-        buttons: {
-          selector: 'button',
-          states: {
-            set: {
-              'disabled': 'disabled'
-            }
-          },
-          pseudos: ['form-associated']
-        }
-      }
-    },
     chain: {
       perform: function() {
         if (this.attributes.action) {
@@ -77,6 +63,33 @@ LSD.Widget.Grid.Bar = new Class({
         return {
           target: this.form,
           action: 'submit'
+        }
+      }
+    },
+
+    has: {
+      one: {
+        checkbox: {
+          selector: '> input[type=checkbox]',
+          chain: {
+            bulkselect: function() {
+              if (this.form.list) ; 
+                return {target: this.form.list.items.map(function(item) {
+                  return item.checkbox
+                }), action: 'check', arguments: this.checked};
+            }
+          }
+        }
+      },
+      many: {
+        buttons: {
+          selector: 'button',
+          states: {
+            set: {
+              'disabled': 'disabled'
+            }
+          },
+          pseudos: ['form-associated']
         }
       }
     }

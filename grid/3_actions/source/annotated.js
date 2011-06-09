@@ -18,7 +18,6 @@ LSD.Widget.Selectlist.Option = new Class({
     pseudos: Array.fast('item', 'clickable')
   }
 });
-
 LSD.Widget.Grid = new Class({
   options: {
     tag: 'grid',
@@ -29,7 +28,6 @@ LSD.Widget.Grid = new Class({
           selector: 'list',
           mutation: '> ul',
           source: 'grid-list',
-          
 /*
   A widget with **list** pseudoclass will fire `set` event
   when an item is *selected* and ind `unset` when it is unselected.
@@ -75,7 +73,6 @@ LSD.Widget.Grid = new Class({
     }
   }
 });
-
 /*
   Bar widget is a grid toolbar. It holds buttons that do actions on items
   and a checkbox that selects all items.
@@ -83,39 +80,6 @@ LSD.Widget.Grid = new Class({
 LSD.Widget.Grid.Bar = new Class({
   options: {
     tag: 'bar',
-    /*
-      The main purpose of the grid bar is to  
-    */
-
-    has: {
-      many: {
-        buttons: {
-          selector: 'button',
-    /*
-      `states.set` option mirrors `disabled` state of the bar on to
-      its buttons. So whenever bar gets disabled or enabled, buttons
-      inside of it do the same.  
-    */
-          states: {
-            set: {
-              'disabled': 'disabled'
-            }
-          },
-    /*
-      If you remember, `form-associated` pseudo class makes form 
-      (and the grid is a form) recognize the widget as its element. 
-      
-      Usually, it is used to add values to form's dataset, but 
-      here buttons dont really have values. 
-      
-      The other effect of widget being form associated, is that
-      it recieves `widget.form` property that makes form (and grid)
-      easily accessible for buttons. It will be used below. 
-    */
-          pseudos: ['form-associated']
-        }
-      }
-    },
     /*
       **chain** option is a way to define a queue of actions
       to be executed in widget's chain routine. 
@@ -189,9 +153,67 @@ LSD.Widget.Grid.Bar = new Class({
           action: 'submit'
         }
       }
+    },
+
+    has: {
+      /*
+        ## Select all checkbox
+        
+        A bar may have a checkbox that will select all items in a grid list
+        on check and unselect all items if on uncheck.
+      */
+      one: {
+        checkbox: {
+          selector: '> input[type=checkbox]',
+          /*
+            `bulkselect` is a link that putsa "check" action into a chain. 
+            The target of action is set to all checkboxes of all items in
+            the list. 
+            
+            Link also specifies `arguments` for the action as `this.checked`.
+            This will change item checkboxes checkedness state to whatever
+            checkedness state of bulk selecting checkbox is. So this action
+            may be used both to uncheck and check items.
+          */
+          chain: {
+            bulkselect: function() {
+              if (this.form.list) ; 
+                return {target: this.form.list.items.map(function(item) {
+                  return item.checkbox
+                }), action: 'check', arguments: this.checked};
+            }
+          }
+        }
+      },
+      many: {
+        buttons: {
+          selector: 'button',
+    /*
+      `states.set` option mirrors `disabled` state of the bar on to
+      its buttons. So whenever bar gets disabled or enabled, buttons
+      inside of it do the same.  
+    */
+          states: {
+            set: {
+              'disabled': 'disabled'
+            }
+          },
+    /*
+      If you remember, `form-associated` pseudo class makes form 
+      (and the grid is a form) recognize the widget as its element. 
+      
+      Usually, it is used to add values to form's dataset, but 
+      here buttons dont really have values. 
+      
+      The other effect of widget being form associated, is that
+      it recieves `widget.form` property that makes form (and grid)
+      easily accessible for buttons. It will be used below. 
+    */
+          pseudos: ['form-associated']
+        }
+      }
     }
   },
-  
   /*
     Our first real method (we didnt write any so far), will be a callback. It is defined
     as an instance method for ease of binding. So this function can be used as a listener
@@ -208,7 +230,6 @@ LSD.Widget.Grid.Bar = new Class({
     * It checks bar checkbox on if all items in a grid are selected and checks it off
       if atleast one item is not selected anymore.
   */
-  
   onSelectionChange: function() {
     var selected = this.list ? this.list.selectedItems.length : 0;
     var items = this.list ? this.list.items.length : 0;

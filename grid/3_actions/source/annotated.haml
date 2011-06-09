@@ -32,8 +32,7 @@
       
       Top bar is simply a `<header>` element. It will be only enabled
       when there are some list items selected on the grid, otherwise
-      bar itself and buttons inside will be disabled.  
-      
+      bar itself and buttons inside will be disabled.
   %header
     /
       :plain
@@ -49,14 +48,12 @@
         to trigger actions on selected items. So this button will delete selected items.
     %button{:execute => "delete"} Delete
     %button{:href => "/person/followships", :method => :post, :transport => :xhr}
-      
   %ul{:name => "people"}
     %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "ibolmo"}
       %input{:type => "checkbox"}
       %h2 
         %a{:itemprop => "url", :href => "http://github.com/ibolmo"} 
           %span{:itemprop => "name"} Olmo Maldonado
-    
       %dl
         %dt Gender
         %dd{:itemprop => "gender"} Male
@@ -65,15 +62,12 @@
         %dt Email
         %dd
           %a{:href => "mailto:olmo@maldonado.biz", :itemprop => "email"} olmo@maldonado.biz
-  
     %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "subtleGradient"}
       %input{:type => "checkbox"}
       %h2
         %a{:itemprop => "url", :href => "http://github.com/subtleGradient"} 
           %span{:itemprop => "name"} Thomas Aylott
-        
       %a{:href => "mailto:thomas@aylott.biz", :itemprop => "email"} thomas@aylott.biz
-      
   /
     :plain
       ## Same bar in the bottom
@@ -81,7 +75,6 @@
       The element is now `footer`, but let it not fool you, it's the same bar
       as above. The widget class is going to be the same, so the behavior. 
       It will be disabled if there are no items selected in the grid list.
-
   %footer
     %label 
       %input{:type => :checkbox}

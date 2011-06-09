@@ -17,7 +17,6 @@
       Target attribute accepts any selector. It does its searches in a widget
       tree by default, so "grid list" selector finds the widget that is initialized
       on "ul" element. That relation was set on the first step.
-      
 %form.grid{:action => "/people", :transport => "xhr", :target => "grid list"}
   /
     :plain
@@ -31,7 +30,6 @@
   %nav
     %input{:type => "search", :name => "q"}
     %button{:type => "submit"} Send
-    
     / 
       :plain
         ## Radiogroup (&lt;select&gt;)
@@ -43,7 +41,6 @@
       %ul{:name => "sort_by"}
         %li.selected Date
         %li Time
-    
     / 
       :plain
         ## Checkbox group (&lt;select multiple&gt;)
@@ -73,12 +70,10 @@
       / 
         We're going to add a checkbox in the beginning of each item. Checkbox is a metaphor
         that people understand. It's like if it was inviting a user to select one or many items at once.
-        
       %input{:type => "checkbox"}
       %h2 
         %a{:itemprop => "url", :href => "http://github.com/ibolmo"} 
           %span{:itemprop => "name"} Olmo Maldonado
-    
       %dl
         %dt Gender
         %dd{:itemprop => "gender"} Male
@@ -87,12 +82,10 @@
         %dt Email
         %dd
           %a{:href => "mailto:olmo@maldonado.biz", :itemprop => "email"} olmo@maldonado.biz
-  
     %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "subtleGradient"}
       / And here, a checkbox
       %input{:type => "checkbox"}
       %h2
         %a{:itemprop => "url", :href => "http://github.com/subtleGradient"} 
           %span{:itemprop => "name"} Thomas Aylott
-        
       %a{:href => "mailto:thomas@aylott.biz", :itemprop => "email"} thomas@aylott.biz

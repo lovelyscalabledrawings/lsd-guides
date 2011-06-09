@@ -4,8 +4,6 @@
   A grid is actually a form, if you look at it. It has various
   fields that define how data is filtered, just like form do.
 */
-
-
 LSD.Widget.Grid = new Class({
   options: {
     tag: 'grid',
@@ -43,7 +41,6 @@ LSD.Widget.Grid = new Class({
     }
   }
 });
-
 /*
   The list widget is pretty simple. It consists of a widget
   definition, pseudoclass that turns it into a list mode,
@@ -72,7 +69,6 @@ LSD.Widget.Grid.List = new Class({
     }
   }
 });
-
 /*
   **item** pseudoclass doesn't do much to widget itself, but
   make it findable by parent list widget.
@@ -83,7 +79,6 @@ LSD.Widget.Grid.List.Item = new Class({
     pseudos: ['item']
   }
 });
-
 /*
   New document will set domready callbacks,
   traverse the document element, and set the body widget.
@@ -99,18 +94,15 @@ new LSD.Document({
     '.grid': 'grid'
   }
 });
-
 /*
   Let's play with it a little bit.
   
   `document.getItems()` serializes html elements that define microdata
   properties and returns an array of entities set in document.
 */
-
 console.group('Information');
 console.log('Items found in document:')
 console.log('document.getItems()', document.getItems());
-
 /*
   ## Selecting widgets 
   Let's try accessing the items on a grid. 
@@ -123,7 +115,6 @@ console.log('document.getItems()', document.getItems());
 console.log('Number of items in list')
 console.log('LSD.document.getElements("grid list item").length', LSD.document.getElements("grid list item").length);
 console.log('LSD.document.getElement("grid").list.items.length', LSD.document.getElement("grid").list.items.length);
-
 /*
   ## Recursive layout
   

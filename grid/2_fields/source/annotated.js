@@ -36,7 +36,6 @@ LSD.Widget.Selectlist = new Class({
     }
   }
 });
-
 /*
   Option widget is set as **clickable**. There is a global click dispatcher
   routine that serves the event to the willing widgets. Usually, a widget that
@@ -57,14 +56,12 @@ LSD.Widget.Selectlist = new Class({
   on element). If an item widget is initialized on an element with "selected" class,
   the command will initiate click, that will select the option in a list.
 */
-
 LSD.Widget.Selectlist.Option = new Class({
   options: {
     tag: 'option',
     pseudos: Array.fast('item', 'clickable')
   }
 });
-
 LSD.Widget.Grid = new Class({
   options: {
     tag: 'grid',
@@ -166,9 +163,9 @@ new LSD.Document({
     'nav ul[name]': 'selectlist'
   }
 });
-
-
-
+/*
+  Time to test the grid
+*/
 var grid = LSD.document.getElement('grid');
 
 console.group('Information');
@@ -178,13 +175,11 @@ console.group('Information');
 */
 console.log('Output all field names of all widgets in grid')
 console.log('Object.keys(grid.names)', Object.keys(grid.names));
-
 /* 
   There's also an .elements array that holds all form-associated widgets
 */
 console.log('Output all fields')
 console.log('grid.elements', grid.elements);
-
 /*
   Submittable widgets are the ones that have name AND they are eligible to send.
   E.g. if it's a checkbox or radio, it should be checked to be listed in this collection 
@@ -192,7 +187,6 @@ console.log('grid.elements', grid.elements);
 console.log('Output all submittable fields (checked checkboxes and inputs that have name)')
 console.log('grid.submittableElements', grid.submittableElements);
 console.log('grid.submittableElements', grid.submittableElements.map(function(widget) { return widget.source}));
-
 /*
   Selected items are magically tracked for you. Select one item and it ends up in 
   .selectedItems array. 

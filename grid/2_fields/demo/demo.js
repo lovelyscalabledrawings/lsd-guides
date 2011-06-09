@@ -18,7 +18,6 @@ LSD.Widget.Selectlist.Option = new Class({
     pseudos: Array.fast('item', 'clickable')
   }
 });
-
 LSD.Widget.Grid = new Class({
   options: {
     tag: 'grid',
@@ -78,9 +77,6 @@ new LSD.Document({
     'nav ul[name]': 'selectlist'
   }
 });
-
-
-
 var grid = LSD.document.getElement('grid');
 
 console.group('Information');
