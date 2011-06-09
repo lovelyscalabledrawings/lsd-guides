@@ -7,8 +7,7 @@ body {
   font-family: Helvetica; }
 
 .grid {
-  display: block;
-  padding: 0.5em; }
+  display: block; }
   .grid > nav {
     overflow: hidden;
     line-height: 2em; }

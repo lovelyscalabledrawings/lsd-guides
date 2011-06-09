@@ -6,8 +6,7 @@ body {
   padding: 0.5em; }
 
 .grid {
-  display: block;
-  padding: 0.5em; }
+  display: block; }
   .grid > ul {
     border: 1px solid #333333;
     border-radius: 0.5em;

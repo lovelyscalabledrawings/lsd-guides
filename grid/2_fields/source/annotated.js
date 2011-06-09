@@ -1,5 +1,5 @@
 /*
-  ## Javascript: Classes that make widgets tick
+  ## Javascript: Make widgets form fields
   
   We added markup for two instances of our custom widget that
   selects one or many items and works as a select box but if all its options
