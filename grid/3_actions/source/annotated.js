@@ -71,6 +71,33 @@ LSD.Widget.Grid = new Class({
         }
       }
     }
+  },
+  /*
+    Our first real method (we didnt write any so far), will be a callback. It is defined
+    as an instance method for ease of binding. So this function can be used as a listener
+    for events on other widgets and objects and still have `this` pointing to grid widget.
+
+    There're two item collections that relations maintain for us:
+
+    * **items** contains all items in a list
+    * **selectedItems** is a filtered subset of items that are selected now.
+
+    So the the method does two things:
+
+    * It disables bars if there're no items selected in list
+    * It checks bar checkbox on if all items in a grid are selected and checks it off
+      if atleast one item is not selected anymore.
+  */
+  onSelectionChange: function() {
+    var selected = this.list ? this.list.selectedItems.length : 0;
+    var items = this.list ? this.list.items.length : 0;
+    if (items == selected) var mode = true;
+    else if (items == selected + 1 || !selected) var mode = false;
+    else return;
+    return this.bars.each(function(bar) {
+      bar[selected ? 'enable' : 'disable']();
+      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck']
+    })
   }
 });
 /*
@@ -213,33 +240,6 @@ LSD.Widget.Grid.Bar = new Class({
         }
       }
     }
-  },
-  /*
-    Our first real method (we didnt write any so far), will be a callback. It is defined
-    as an instance method for ease of binding. So this function can be used as a listener
-    for events on other widgets and objects and still have `this` pointing to grid widget.
-    
-    There're two item collections that relations maintain for us:
-    
-    * **items** contains all items in a list
-    * **selectedItems** is a filtered subset of items that are selected now.
-    
-    So the the method does two things:
-    
-    * It disables bars if there're no items selected in list
-    * It checks bar checkbox on if all items in a grid are selected and checks it off
-      if atleast one item is not selected anymore.
-  */
-  onSelectionChange: function() {
-    var selected = this.list ? this.list.selectedItems.length : 0;
-    var items = this.list ? this.list.items.length : 0;
-    if (items == selected) var mode = true;
-    else if (items == selected + 1 || !selected) var mode = false;
-    else return;
-    return this.bars.each(function(bar) {
-      bar[selected ? 'enable' : 'disable']();
-      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck']
-    })
   }
 })
 LSD.Widget.Grid.List = new Class({

@@ -46,6 +46,17 @@ LSD.Widget.Grid = new Class({
         }
       }
     }
+  },
+  onSelectionChange: function() {
+    var selected = this.list ? this.list.selectedItems.length : 0;
+    var items = this.list ? this.list.items.length : 0;
+    if (items == selected) var mode = true;
+    else if (items == selected + 1 || !selected) var mode = false;
+    else return;
+    return this.bars.each(function(bar) {
+      bar[selected ? 'enable' : 'disable']();
+      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck']
+    })
   }
 });
 LSD.Widget.Grid.Bar = new Class({
@@ -93,17 +104,6 @@ LSD.Widget.Grid.Bar = new Class({
         }
       }
     }
-  },
-  onSelectionChange: function() {
-    var selected = this.list ? this.list.selectedItems.length : 0;
-    var items = this.list ? this.list.items.length : 0;
-    if (items == selected) var mode = true;
-    else if (items == selected + 1 || !selected) var mode = false;
-    else return;
-    return this.bars.each(function(bar) {
-      bar[selected ? 'enable' : 'disable']();
-      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck']
-    })
   }
 })
 LSD.Widget.Grid.List = new Class({
