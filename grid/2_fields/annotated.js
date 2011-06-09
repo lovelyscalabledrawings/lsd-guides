@@ -1,5 +1,5 @@
 /*
-  # Make it all fields
+  ## Javascript: Classes that make widgets tick
   
   We added markup for two instances of our custom widget that
   selects one or many items and works as a select box but if all its options
@@ -124,7 +124,7 @@ LSD.Widget.Grid.List = new Class({
 LSD.Widget.Grid.List.Item = new Class({
   options: {
     tag: 'item',
-    pseudos: ['item'],
+    pseudos: ['item', 'clickable'],
     has: {
       /*
         Grant each item one checkbox. It will be accessible as

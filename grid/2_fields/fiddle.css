@@ -3,37 +3,42 @@ body, html {
   border: 0; }
 
 body {
-  padding: 0.5em; }
+  padding: 0.5em;
+  font-family: Helvetica; }
 
 .grid {
   display: block;
   padding: 0.5em; }
   .grid > nav {
-    overflow: hidden; }
+    overflow: hidden;
+    line-height: 2em; }
     .grid > nav ul[name] {
       vertical-align: baseline;
       display: inline-block; }
       .grid > nav ul[name] > li {
         color: #999999;
         text-decoration: underline;
+        cursor: pointer;
         display: inline-block;
-        vertical-align: baseline; }
+        vertical-align: baseline;
+        line-height: 1.5em; }
         .grid > nav ul[name] > li.selected {
           color: #333333;
           text-decoration: none; }
         .grid > nav ul[name] > li + li {
           margin-left: 0.3em;
           padding-left: 0.3em;
-          border-left: 1px solid #666666; }
-    .grid > nav input[type=search] {
-      float: left; }
+          border-left: 1px solid #666666;
+          line-height: 1.5em; }
+    .grid > nav button[type=submit] {
+      margin-left: 0.5em;
+      margin-right: 2em; }
     .grid > nav label {
+      margin-right: 0.5em;
+      font-weight: bold; }
+    .grid > nav fieldset {
       margin-right: 1em;
-      font: weight bold;
-      clear: both; }
-      .grid > nav label, .grid > nav label + * {
-        margin-top: 0.25em;
-        float: left; }
+      display: inline-block; }
   .grid > ul {
     margin-top: 0.5em;
     border: 1px solid #333333;

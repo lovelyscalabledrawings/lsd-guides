@@ -85,6 +85,21 @@
       h1 {
         font-size: 2em; }
       
+      h1 + ul {
+        float: right; 
+        width: 100%;
+        margin-right: -120%;
+        margin-top: -2em;
+      }
+      
+      h1 + ul li {
+        display: inline;
+      }
+      
+      h1 + ul li + li{
+        margin-left: 1em;
+      }
+      
       h2 {
         font-size: 1em; }
         
@@ -271,22 +286,25 @@
     </style>
   </head>
   <body>
-    <section><iframe src="http://jsfiddle.net/Inviz/2u7Jy/embedded/result,js,html,css/"></iframe></section>
     <section>
-      <h1>A markup for data</h1>
+      <h1>Step 1: Layout</h1>
+      
+      <ul>
+      <li><a href="2_fields.html">Next step &rarr;</a></li>
+      </ul>
+      
+      
+      <iframe src="http://jsfiddle.net/Inviz/2u7Jy/embedded/result,js,html,css/"></iframe>
+    </section>
+    <section>
+      <h2>HTML: A markup for data</h2>
       
       <p>We&rsquo;ll start simple. Let&rsquo;s have a grid section wrapper around a list of bulleted items.
       Items are full of microdata (dev.w3.org/html5/md/) that defines attributes of models rendered in html</p>
       
-      <br>
-      
-      
       <p>The first step is to convert HTML elements into Widget tree. Some elements are translated into widgets
       automatically (such as &amp;ltinput&gt;, &lt;form&gt;, &lt;textarea&gt; and &lt;body&gt;). Those have very
       well defined behavior and so they simply work. But what about custom widgets you want to make?</p>
-      
-      <br>
-      
       
       <p>The solution is the <strong>mutation</strong> of elements. Mutation is a pair of selector and widget class name.
       So every element in document is matched against current mutation selectors and if matches, the element
@@ -338,7 +356,7 @@
       <code>    <span class="nt">&lt;li</span> <span class="na">itemid=</span><span class="s">&#39;subtleGradient&#39;</span> <span class="na">itemscope=</span><span class="s">&#39;itemscope&#39;</span> <span class="na">itemtype=</span><span class="s">&#39;person http://schema.org/Person&#39;</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;h2&gt;</span>&#x000A;        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;http://github.com/subtleGradient&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;url&#39;</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">&#39;name&#39;</span><span class="nt">&gt;</span>Thomas Aylott<span class="nt">&lt;/span&gt;</span>&#x000A;        <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;/h2&gt;</span>&#x000A;      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;mailto:thomas@aylott.biz&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;email&#39;</span><span class="nt">&gt;</span>thomas@aylott.biz<span class="nt">&lt;/a&gt;</span>&#x000A;    <span class="nt">&lt;/li&gt;</span>&#x000A;  <span class="nt">&lt;/ul&gt;</span>&#x000A;<span class="nt">&lt;/section&gt;</span>&#x000A;</code>
     </figure>
     <section>
-      <h1>Set up widget classes</h1>
+      <h2>Javascript: Create widget classes</h2>
       
       <p>A grid is actually a form, if you look at it. It has various
       fields that define how data is filtered, just like form do.</p>

@@ -1,5 +1,5 @@
 <!--
-  # Your good olde forms
+  ## HTML: Add things that filter data
   
   So once again, a grid is actually a form. Its **action** is where
   it sends requests to get filtered list items set. Filter conditions
@@ -36,11 +36,13 @@
       A group of items where only one item can be selected at once is called a radiogroup.
       Only the selected element sends its value with form, so query string is simply `?sort_by=Date`
     -->
-    <label>Sort by:</label>
-    <ul name='sort_by'>
-      <li class='selected'>Date</li>
-      <li>Time</li>
-    </ul>
+    <fieldset>
+      <label>Sort by:</label>
+      <ul name='sort_by'>
+        <li class='selected'>Date</li>
+        <li>Time</li>
+      </ul>
+    </fieldset>
     <!--
       ## Checkbox group (&lt;select multiple&gt;)
       
@@ -54,12 +56,14 @@
       
       `?type[]=Feed&type[]=Songs` and is interpreted as `{type: ["Feed", "Songs"]}`
     -->
-    <label>Types:</label>
-    <ul multiple='multiple' name='type'>
-      <li class='selected' value='Feed'>News</li>
-      <li>Photos</li>
-      <li class='selected'>Songs</li>
-    </ul>
+    <fieldset>
+      <label>Types:</label>
+      <ul multiple='multiple' name='type'>
+        <li class='selected' value='Feed'>News</li>
+        <li>Photos</li>
+        <li class='selected'>Songs</li>
+      </ul>
+    </fieldset>
   </nav>
   <!--
     ## A list with checkboxes 

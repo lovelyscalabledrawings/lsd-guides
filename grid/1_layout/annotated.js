@@ -1,5 +1,5 @@
 /* 
-  # Set up widget classes
+  ## Javascript: Create widget classes
   
   A grid is actually a form, if you look at it. It has various
   fields that define how data is filtered, just like form do.

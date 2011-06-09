@@ -3,37 +3,41 @@ body, html
   :border 0
 body
   :padding 0.5em
+  :font-family Helvetica
 
 .grid
   :display block
-  :padding 0.5em
   > nav
     :overflow hidden
+    :line-height 2em
     ul[name]
       :vertical-align baseline
       :display inline-block
       > li
         :color #999
         :text-decoration underline
+        :cursor pointer
         &.selected
           :color #333
           :text-decoration none
         :display inline-block
         :vertical-align baseline
+        :line-height 1.5em
         \+ li
           :margin-left 0.3em
           :padding-left 0.3em
           :border-left 1px solid #666
+          :line-height 1.5em
           
-    input[type=search]
-      :float left
+    button[type=submit]
+      :margin-left 0.5em
+      :margin-right 2em
     label
+      :margin-right 0.5em
+      :font-weight bold
+    fieldset
       :margin-right 1em
-      :font weight bold
-      &, & + *
-        :margin-top 0.25em
-        :float left
-      :clear both
+      :display inline-block
 
   > ul
     :margin-top 0.5em

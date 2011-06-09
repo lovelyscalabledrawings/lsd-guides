@@ -54,7 +54,7 @@ LSD.Widget.Grid.List = new Class({
 LSD.Widget.Grid.List.Item = new Class({
   options: {
     tag: 'item',
-    pseudos: ['item'],
+    pseudos: ['item', 'clickable'],
     has: {
       one: {
         checkbox: {

@@ -2,17 +2,21 @@
   <nav>
     <input name='q' type='search' />
     <button type='submit'>Send</button>
-    <label>Sort by:</label>
-    <ul name='sort_by'>
-      <li class='selected'>Date</li>
-      <li>Time</li>
-    </ul>
-    <label>Types:</label>
-    <ul multiple='multiple' name='type'>
-      <li class='selected' value='Feed'>News</li>
-      <li>Photos</li>
-      <li class='selected'>Songs</li>
-    </ul>
+    <fieldset>
+      <label>Sort by:</label>
+      <ul name='sort_by'>
+        <li class='selected'>Date</li>
+        <li>Time</li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <label>Types:</label>
+      <ul multiple='multiple' name='type'>
+        <li class='selected' value='Feed'>News</li>
+        <li>Photos</li>
+        <li class='selected'>Songs</li>
+      </ul>
+    </fieldset>
   </nav>
   <ul name='people'>
     <li itemid='ibolmo' itemscope='itemscope' itemtype='person http://schema.org/Person'>

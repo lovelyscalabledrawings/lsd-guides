@@ -1,6 +1,6 @@
 / 
   :plain
-    # Your good olde forms
+    ## HTML: Add things that filter data
     
     So once again, a grid is actually a form. Its **action** is where
     it sends requests to get filtered list items set. Filter conditions
@@ -35,13 +35,14 @@
     / 
       :plain
         ## Radiogroup (&lt;select&gt;)
-        
+      
         A group of items where only one item can be selected at once is called a radiogroup.
         Only the selected element sends its value with form, so query string is simply `?sort_by=Date`
-    %label Sort by:
-    %ul{:name => "sort_by"}
-      %li.selected Date
-      %li Time
+    %fieldset
+      %label Sort by:
+      %ul{:name => "sort_by"}
+        %li.selected Date
+        %li Time
     
     / 
       :plain
@@ -56,11 +57,12 @@
         like this: 
         
         `?type[]=Feed&type[]=Songs` and is interpreted as `{type: ["Feed", "Songs"]}`
-    %label Types:
-    %ul{:name => "type", :multiple => true}
-      %li.selected{:value => "Feed"} News
-      %li Photos
-      %li.selected Songs
+    %fieldset
+      %label Types:
+      %ul{:name => "type", :multiple => true}
+        %li.selected{:value => "Feed"} News
+        %li Photos
+        %li.selected Songs
   /
     :plain
       ## A list with checkboxes 

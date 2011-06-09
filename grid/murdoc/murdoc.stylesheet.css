@@ -55,10 +55,11 @@ section iframe {
   height: 250px;
   border: 1px solid #333;
   margin-bottom: 1em;
+  margin-top: 1.5em;
 }
 
 section iframe.high {
-  height: 450px;
+  height: 300px;
 }
 
 
@@ -78,6 +79,21 @@ p {
 
 h1 {
   font-size: 2em; }
+
+h1 + ul {
+  float: right; 
+  width: 100%;
+  margin-right: -120%;
+  margin-top: -2em;
+}
+
+h1 + ul li {
+  display: inline;
+}
+
+h1 + ul li + li{
+  margin-left: 1em;
+}
 
 h2 {
   font-size: 1em; }
@@ -114,7 +130,7 @@ figure {
   margin-right: -135%;
   width: 122.75%;
   clear: right;
-  padding: 1.5em 0 3em; }
+  padding: 0.5em 0 3em; }
   figure > ol {
     text-shadow: 0 1px 0 #eee;
     -moz-text-shadow: 0 1px 0 #eee;
@@ -125,7 +141,6 @@ figure {
     width: 7.5%;
     text-align: right;
     float: left;
-    font-size: 0.8em;
     -webkit-border-radius: 0.2em;
     background: rgba(125, 125, 125, 0.4);
     border: 1px solid rgba(0, 0, 0, 0.3);
@@ -134,8 +149,9 @@ figure {
     figure > ol li {
       margin: 0; }
   figure > code, figure > ol {
-    font-size: 1em;
-    font-family: monospace; }
+    font-size: 0.8em;
+    line-height: 1.2em;
+    font-family: "monaco", "Courier New", Courier, monospace, serif; }
   figure > code {
     white-space: pre; }
 
