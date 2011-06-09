@@ -96,7 +96,7 @@ LSD.Widget.Grid = new Class({
     else return;
     return this.bars.each(function(bar) {
       bar[selected ? 'enable' : 'disable']();
-      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck']
+      if (mode != null) bar.checkbox[mode ? 'check' : 'uncheck'];
     })
   }
 });
@@ -107,114 +107,85 @@ LSD.Widget.Grid = new Class({
 LSD.Widget.Grid.Bar = new Class({
   options: {
     tag: 'bar',
-    /*
-      **chain** option is a way to define a queue of actions
-      to be executed in widget's chain routine. 
-      
-      `target` attribute selectors in templates do exactly this
-      under the hood. 
-      
-      A single item in a chain is called **link**. Links can be of 
-      the following types:
-      
-      * **Synchronous action** executes an action on target and
-        immediately calls the next link for execution.
-        
-      * **Asynchronous action** has to wait until it's over to 
-        pass the execution to next links. Sometimes, these actions
-        may result in either success or failure, thus defining
-        which links exactly will be executed.
-        
-      * **Arguments** link does no real action, but it prepares
-        arguments for the next link. That kind of link, for example,
-        retrieve and pass extra data for submission.
-    */
-    chain: {
-      /*
-        Perform link will be called when the button is clicked. But
-        what is that action it should do to selected items?  
-        
-        A link is a function that defines which action is going
-        to be called on which target and when. When chain is called,
-        all links are called and actions get sorted by their priority.
-      */
-      perform: function() {
-        /*
-          Since the buttons are form associated, they can use `this.form`
-          shortcut to access grid. `this.form.list` returns the list associated
-          to parent grid.
-          
-          If a button has custom `action` attribute, the action with
-          that name will be executed on selected items.
-        */
-        if (this.attributes.action) {
-          return {name: this.attributes.action, target: this.form.list.selectedItems};
-        /*
-          Otherwise, serialized list data is left for the next action in chain
-          that is a button submission. The button later gets sent to its
-          `href` location using XmlHTTPRequest (if `transport` attribute is set to `xjr`)
-          with the selected list ids in paramters. Request may look like this:
-          
-          POST /people/delete?people[]=ibolmo&people[]=subtleGradient
-          
-          where `people` is the name of the list and `ibolmo` is the id
-          of selected item. `/people/delete` comes from the `href` attribute 
-          of a button. And method (that is `POST`) is specified with `method` attribute.
-        */
-        } else {
-          return {arguments: {data: this.form.list.getData()}, priority: 10}
-        }
-      },
-      
-      /*
-        `refresh` link will trigger re-submission of a grid and will fetch new items.
-        This is useful if the items are paginated. After one item gets deleted, 
-        newly received items will fill the blanks. Response may also include updated
-        paginator links and counters.
-        
-        The idea is to take action on items, and then receieve updated items back. 
-      */
-      refresh: function() {
-        return {
-          target: this.form,
-          action: 'submit'
-        }
-      }
-    },
-
     has: {
-      /*
-        ## Select all checkbox
-        
-        A bar may have a checkbox that will select all items in a grid list
-        on check and unselect all items if on uncheck.
-      */
-      one: {
-        checkbox: {
-          selector: '> input[type=checkbox]',
-          /*
-            `bulkselect` is a link that putsa "check" action into a chain. 
-            The target of action is set to all checkboxes of all items in
-            the list. 
-            
-            Link also specifies `arguments` for the action as `this.checked`.
-            This will change item checkboxes checkedness state to whatever
-            checkedness state of bulk selecting checkbox is. So this action
-            may be used both to uncheck and check items.
-          */
-          chain: {
-            bulkselect: function() {
-              if (this.form.list) ; 
-                return {target: this.form.list.items.map(function(item) {
-                  return item.checkbox
-                }), action: 'check', arguments: this.checked};
-            }
-          }
-        }
-      },
       many: {
         buttons: {
           selector: 'button',
+          
+          /*
+            **chain** option is a way to define a queue of actions
+            to be executed in widget's chain routine. 
+
+            `target` attribute selectors in templates do exactly this
+            under the hood. 
+
+            A single item in a chain is called **link**. Links can be of 
+            the following types:
+
+            * **Synchronous action** executes an action on target and
+              immediately calls the next link for execution.
+
+            * **Asynchronous action** has to wait until it's over to 
+              pass the execution to next links. Sometimes, these actions
+              may result in either success or failure, thus defining
+              which links exactly will be executed.
+
+            * **Arguments** link does no real action, but it prepares
+              arguments for the next link. That kind of link, for example,
+              retrieve and pass extra data for submission.
+          */
+          chain: {
+            /*
+              Perform link will be called when the button is clicked. But
+              what is that action it should do to selected items?  
+
+              A link is a function that defines which action is going
+              to be called on which target and when. When chain is called,
+              all links are called and actions get sorted by their priority.
+            */
+            perform: function() {
+              /*
+                Since the buttons are form associated, they can use `this.form`
+                shortcut to access grid. `this.form.list` returns the list associated
+                to parent grid.
+
+                If a button has custom `action` attribute, the action with
+                that name will be executed on selected items.
+              */
+              if (this.attributes.action) {
+                return {name: this.attributes.action, target: this.form.list.selectedItems};
+              /*
+                Otherwise, serialized list data is left for the next action in chain
+                that is a button submission. The button later gets sent to its
+                `href` location using XmlHTTPRequest (if `transport` attribute is set to `xjr`)
+                with the selected list ids in paramters. Request may look like this:
+
+                POST /people/delete?people[]=ibolmo&people[]=subtleGradient
+
+                where `people` is the name of the list and `ibolmo` is the id
+                of selected item. `/people/delete` comes from the `href` attribute 
+                of a button. And method (that is `POST`) is specified with `method` attribute.
+              */
+              } else {
+                return {arguments: {data: this.form.list.getData()}, priority: 10}
+              }
+            },
+
+            /*
+              `refresh` link will trigger re-submission of a grid and will fetch new items.
+              This is useful if the items are paginated. After one item gets deleted, 
+              newly received items will fill the blanks. Response may also include updated
+              paginator links and counters.
+
+              The idea is to take action on items, and then receieve updated items back. 
+            */
+            refresh: function() {
+              return {
+                target: this.form,
+                action: 'submit'
+              }
+            }
+          },
     /*
       `states.set` option mirrors `disabled` state of the bar on to
       its buttons. So whenever bar gets disabled or enabled, buttons
@@ -237,6 +208,36 @@ LSD.Widget.Grid.Bar = new Class({
       easily accessible for buttons. It will be used below. 
     */
           pseudos: ['form-associated']
+        }
+      },
+    
+      /*
+        ## Select all checkbox
+
+        A bar may have a checkbox that will select all items in a grid list
+        on check and unselect all items if on uncheck.
+      */
+      one: {
+        checkbox: {
+          selector: '> input[type=checkbox]',
+          /*
+            `bulkselect` is a link that putsa "check" action into a chain. 
+            The target of action is set to all checkboxes of all items in
+            the list. 
+
+            Link also specifies `arguments` for the action as `this.checked`.
+            This will change item checkboxes checkedness state to whatever
+            checkedness state of bulk selecting checkbox is. So this action
+            may be used both to uncheck and check items.
+          */
+          chain: {
+            bulkselect: function() {
+              if (this.form.list) 
+                return {target: this.form.list.items.map(function(item) {
+                  return item.checkbox
+                }), action: 'check', arguments: this.checked};
+            }
+          }
         }
       }
     }

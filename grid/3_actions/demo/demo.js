@@ -62,23 +62,33 @@ LSD.Widget.Grid = new Class({
 LSD.Widget.Grid.Bar = new Class({
   options: {
     tag: 'bar',
-    chain: {
-      perform: function() {
-        if (this.attributes.action) {
-          return {name: this.attributes.action, target: this.form.list.selectedItems};
-        } else {
-          return {arguments: {data: this.form.list.getData()}, priority: 10}
+    has: {
+      many: {
+        buttons: {
+          selector: 'button',
+          chain: {
+            perform: function() {
+              if (this.attributes.action) {
+                return {name: this.attributes.action, target: this.form.list.selectedItems};
+              } else {
+                return {arguments: {data: this.form.list.getData()}, priority: 10}
+              }
+            },
+            refresh: function() {
+              return {
+                target: this.form,
+                action: 'submit'
+              }
+            }
+          },
+          states: {
+            set: {
+              'disabled': 'disabled'
+            }
+          },
+          pseudos: ['form-associated']
         }
       },
-      refresh: function() {
-        return {
-          target: this.form,
-          action: 'submit'
-        }
-      }
-    },
-
-    has: {
       one: {
         checkbox: {
           selector: '> input[type=checkbox]',
@@ -90,17 +100,6 @@ LSD.Widget.Grid.Bar = new Class({
                 }), action: 'check', arguments: this.checked};
             }
           }
-        }
-      },
-      many: {
-        buttons: {
-          selector: 'button',
-          states: {
-            set: {
-              'disabled': 'disabled'
-            }
-          },
-          pseudos: ['form-associated']
         }
       }
     }
