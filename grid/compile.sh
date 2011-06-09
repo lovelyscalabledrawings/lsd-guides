@@ -10,3 +10,9 @@ murdoc 2_fields/source/demo.html 2_fields/source/annotated.html 2_fields/source/
 murdoc-strip-comments 2_fields/source/annotated.js > 2_fields/demo/fiddle.js
 murdoc-strip-comments 2_fields/source/annotated.html > 2_fields/demo/fiddle.html
 sass 2_fields/demo/fiddle.sass > 2_fields/demo/fiddle.css
+echo "Compiling third chapter"
+haml 3_actions/source/annotated.haml > 3_actions/source/annotated.html
+murdoc 3_actions/source/demo.html 3_actions/source/annotated.html 3_actions/source/annotated.js 3_actions.html -t murdoc/murdoc.template.html.haml -s murdoc/murdoc.stylesheet.css --do-not-count-comment-lines
+murdoc-strip-comments 3_actions/source/annotated.js > 3_actions/demo/fiddle.js
+murdoc-strip-comments 3_actions/source/annotated.html > 3_actions/demo/fiddle.html
+sass 3_actions/demo/fiddle.sass > 3_actions/demo/fiddle.css

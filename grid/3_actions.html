@@ -1,0 +1,768 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html>
+  <head>
+    <title>Build your own grid</title>
+    <style>
+      html, body {
+        min-height: 100%;
+        line-height: 1.5; }
+      
+      p, h1, h2, h3, ol, li, ul, dt, dd, dl, body, html {
+        padding: 0;
+        margin: 0; }
+        
+      p + br {
+        display: none;
+      }
+      
+      body {
+        width: 40%;
+        padding-left: 2.5%;
+        padding-right: 2.5%;
+        background: #BFA730;
+        font-family: Helvetica; }
+        body:after {
+          content: ".";
+          font-size: 0.01em;
+          line-height: 0.01em;
+          display: block;
+          clear: both; }
+      
+      figure#relations h2 ~ h2 {
+        margin-top: 1.5em; }
+      
+      body > * {
+        padding-left: 6%;
+        padding-right: 6%; }
+      
+      html {
+        background: #FFC873; }
+      
+      header {
+        background: rgba(255, 255, 255, 0.1);
+        display: block; }
+        header dl {
+          margin-top: 2em;
+          font-size: 0.75em;
+          line-height: 2em;
+          overflow: hidden; }
+          header dl dt {
+            width: 5em;
+            font-weight: bold; }
+      
+      section {
+        float: left;
+        clear: both;
+        width: 85%; }
+        
+      section iframe {
+        width: 260%;
+        height: 250px;
+        border: 1px solid #333;
+        margin-bottom: 1em;
+        margin-top: 1.5em;
+      }
+      
+      section iframe.high {
+        height: 300px;
+      }
+      
+      
+      p, dl, li {
+        color: #665504;
+        font-weight: normal; }
+      
+      a {
+        color: #BF7330; }
+        a:hover {
+          color: #FF7800; }
+        a:visited {
+          color: #A64E00; }
+      
+      p + p, h2 + p, h1 + p, ul + p, ol + p{
+        margin-top: 1.5em; }
+        
+      p code {
+        background-color: rgba(200, 220, 200, 0.2);
+        display: inline-block;
+        -moz-border-radius: 4px;
+        -webkit-border-radius: 4px;
+        border-radius: 4px;
+        padding: 0 0.2em;
+        font-family: "monaco", "Courier New", Courier, monospace, serif;
+        font-size:0.8em;
+        line-height:1.5em;
+      }
+      p:last-child {
+        margin-bottom: 1.5em;
+      }
+      
+      h1 {
+        font-size: 2em; }
+      
+      h1 + ul {
+        float: right; 
+        width: 140%;
+        margin-right: -160%;
+        margin-top: -2em;
+      }
+      
+      h1 + ul li {
+        display: inline;
+      }
+      
+      h1 + ul li + li{
+        margin-left: 1em;
+      }
+      
+      h2 {
+        font-size: 1em; }
+        
+      h1, h2, h3 {
+        color: #A41717; }
+      
+      ol, li {
+        margin-left: 1em; }
+      
+      body > p, body > h1, body > h2 {
+        clear: left; }
+      
+      header {
+        padding-bottom: 1em;
+        overflow: hidden; }
+        
+      
+      dl {
+        clear: left; }
+        dl dt, dl dd {
+          float: left; }
+        dl dt {
+          clear: left; }
+        dl dd {
+          margin-left: 1em; }
+      
+      figure {
+        display: block;
+        float: right;
+        margin-right: -135%;
+        width: 122.75%;
+        clear: right;
+        margin-top: -0.1em;
+        padding: 0 0 3em; }
+        figure > ol {
+          font-family: 0.8em/1.8em Arial;
+          text-shadow: 0 1px 0 #eee;
+          -moz-text-shadow: 0 1px 0 #eee;
+          -webkit-text-shadow: 0 1px 0 #eee;
+          box-shadow: 0 1px 2px #333;
+          -moz-box-shadow: 0 1px 2px #333;
+          -webkit-box-shadow: 0 1px 2px #333;
+          width: 7.5%;
+          text-align: right;
+          float: left;
+          -moz-border-radius: 0.2em;
+          -webkit-border-radius: 0.2em;
+          border-radius: 0.2em;
+          background: rgba(125, 125, 125, 0.4);
+          border: 1px solid rgba(0, 0, 0, 0.3);
+          list-style: none;
+          margin-left: -9.25%; }
+          figure > ol li {
+            margin: 0; }
+        figure > code {
+          font-size: 1em;
+          line-height: 1.5em;
+          font-family: "monaco", "Courier New", Courier, monospace, serif;
+          white-space: pre; }
+      
+      body .hll {
+        background-color: #ffffcc; }
+      body .c {
+        color: #408080;
+        font-style: italic; }
+      body .err {
+        border: 1px solid #FF0000; }
+      body .k {
+        color: #954121; }
+      body .o {
+        color: #666666; }
+      body .cm {
+        color: #408080;
+        font-style: italic; }
+      body .cp {
+        color: #BC7A00; }
+      body .c1, body .cs {
+        color: #408080;
+        font-style: italic; }
+      body .gd {
+        color: #A00000; }
+      body .ge {
+        font-style: italic; }
+      body .gr {
+        color: #FF0000; }
+      body .gh {
+        color: #000080;
+        font-weight: bold; }
+      body .gi {
+        color: #00A000; }
+      body .go {
+        color: #808080; }
+      body .gp {
+        color: #000080;
+        font-weight: bold; }
+      body .gs {
+        font-weight: bold; }
+      body .gu {
+        color: #800080;
+        font-weight: bold; }
+      body .gt {
+        color: #0040D0; }
+      body .kc {
+        color: #954121; }
+      body .kd, body .kn {
+        color: #954121;
+        font-weight: bold; }
+      body .kp {
+        color: #954121; }
+      body .kr {
+        color: #954121;
+        font-weight: bold; }
+      body .kt {
+        color: #B00040; }
+      body .m {
+        color: #666666; }
+      body .s {
+        color: #219161; }
+      body .na {
+        color: #7D9029; }
+      body .nb {
+        color: #954121; }
+      body .nc {
+        color: #0000FF;
+        font-weight: bold; }
+      body .no {
+        color: #880000; }
+      body .nd {
+        color: #AA22FF; }
+      body .ni {
+        color: #999999;
+        font-weight: bold; }
+      body .ne {
+        color: #D2413A;
+        font-weight: bold; }
+      body .nf {
+        color: #0000FF; }
+      body .nl {
+        color: #A0A000; }
+      body .nn {
+        color: #0000FF;
+        font-weight: bold; }
+      body .nt {
+        color: #954121;
+        font-weight: bold; }
+      body .nv {
+        color: #19469D; }
+      body .ow {
+        color: #AA22FF;
+        font-weight: bold; }
+      body .w {
+        color: #bbbbbb; }
+      body .mf, body .mh, body .mi, body .mo {
+        color: #666666; }
+      body .sb, body .sc {
+        color: #219161; }
+      body .sd {
+        color: #219161;
+        font-style: italic; }
+      body .s2 {
+        color: #219161; }
+      body .se {
+        color: #BB6622;
+        font-weight: bold; }
+      body .sh {
+        color: #219161; }
+      body .si {
+        color: #BB6688;
+        font-weight: bold; }
+      body .sx {
+        color: #954121; }
+      body .sr {
+        color: #BB6688; }
+      body .s1 {
+        color: #219161; }
+      body .ss {
+        color: #19469D; }
+      body .bp {
+        color: #954121; }
+      body .vc, body .vg, body .vi {
+        color: #19469D; }
+      body .il {
+        color: #666666; }
+    </style>
+  </head>
+  <body>
+    <section>
+      <h2>This needs to be more interactive</h2>
+      
+      <p>Now when we&rsquo;ve managed to set up a working widget tree,
+      it&rsquo;s time to make grid do something useful.</p>
+      
+      <p>Grids often allow user to take actions on items in grid.
+      Select items you&rsquo;d like, hit &ldquo;delete&rdquo;, and bam! It&rsquo;s all gone.</p>
+      
+      <p>This chapter only introduces one new widget &ndash; a bar, which is a
+      toolbar for action buttons. Let&rsquo;s make it a little fancy and
+      make it two bars, before and after the items list.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+      </ol>
+      <code><span class="nt">&lt;form</span> <span class="na">action=</span><span class="s">&#39;/people&#39;</span> <span class="na">class=</span><span class="s">&#39;grid&#39;</span> <span class="na">target=</span><span class="s">&#39;grid list&#39;</span> <span class="na">transport=</span><span class="s">&#39;xhr&#39;</span><span class="nt">&gt;</span>&#x000A;  <span class="nt">&lt;nav&gt;</span>&#x000A;    <span class="nt">&lt;input</span> <span class="na">name=</span><span class="s">&#39;q&#39;</span> <span class="na">type=</span><span class="s">&#39;search&#39;</span> <span class="nt">/&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">type=</span><span class="s">&#39;submit&#39;</span><span class="nt">&gt;</span>Send<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;fieldset&gt;</span>&#x000A;      <span class="nt">&lt;label&gt;</span>Sort by:<span class="nt">&lt;/label&gt;</span>&#x000A;      <span class="nt">&lt;ul</span> <span class="na">name=</span><span class="s">&#39;sort_by&#39;</span><span class="nt">&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span><span class="nt">&gt;</span>Date<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li&gt;</span>Time<span class="nt">&lt;/li&gt;</span>&#x000A;      <span class="nt">&lt;/ul&gt;</span>&#x000A;    <span class="nt">&lt;/fieldset&gt;</span>&#x000A;    <span class="nt">&lt;fieldset&gt;</span>&#x000A;      <span class="nt">&lt;label&gt;</span>Types:<span class="nt">&lt;/label&gt;</span>&#x000A;      <span class="nt">&lt;ul</span> <span class="na">multiple=</span><span class="s">&#39;multiple&#39;</span> <span class="na">name=</span><span class="s">&#39;type&#39;</span><span class="nt">&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span> <span class="na">value=</span><span class="s">&#39;Feed&#39;</span><span class="nt">&gt;</span>News<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li&gt;</span>Photos<span class="nt">&lt;/li&gt;</span>&#x000A;        <span class="nt">&lt;li</span> <span class="na">class=</span><span class="s">&#39;selected&#39;</span><span class="nt">&gt;</span>Songs<span class="nt">&lt;/li&gt;</span>&#x000A;      <span class="nt">&lt;/ul&gt;</span>&#x000A;    <span class="nt">&lt;/fieldset&gt;</span>&#x000A;  <span class="nt">&lt;/nav&gt;</span>&#x000A;</code>
+    </figure>
+    <section>
+      <h2>Button bar</h2>
+      
+      <p>Top bar is simply a <code>&lt;header&gt;</code> element. It will be only enabled
+      when there are some list items selected on the grid, otherwise
+      bar itself and buttons inside will be disabled.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>21</li>
+      </ol>
+      <code>  <span class="nt">&lt;header&gt;</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Checkbox to select all items. Quite ordinary, except that it
+      is only checked when all items are selected in the grid.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>22</li>
+        <li>23</li>
+        <li>24</li>
+        <li>25</li>
+      </ol>
+      <code>    <span class="nt">&lt;label&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      Select all&#x000A;    <span class="nt">&lt;/label&gt;</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>A button with a custom <code>execute</code> attribute. LSD doesn&rsquo;t know anything
+      about <code>execute</code> attribute on <code>&lt;button&gt;</code> elements, but we&rsquo;re going to use it
+      to trigger actions on selected items. So this button will delete selected items.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>26</li>
+        <li>27</li>
+        <li>28</li>
+        <li>29</li>
+        <li>30</li>
+        <li>31</li>
+        <li>32</li>
+        <li>33</li>
+        <li>34</li>
+        <li>35</li>
+        <li>36</li>
+        <li>37</li>
+        <li>38</li>
+        <li>39</li>
+        <li>40</li>
+        <li>41</li>
+        <li>42</li>
+        <li>43</li>
+        <li>44</li>
+        <li>45</li>
+        <li>46</li>
+        <li>47</li>
+        <li>48</li>
+        <li>49</li>
+        <li>50</li>
+        <li>51</li>
+        <li>52</li>
+        <li>53</li>
+        <li>54</li>
+        <li>55</li>
+        <li>56</li>
+        <li>57</li>
+      </ol>
+      <code>    <span class="nt">&lt;button</span> <span class="na">execute=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">href=</span><span class="s">&#39;/person/followships&#39;</span> <span class="na">method=</span><span class="s">&#39;post&#39;</span> <span class="na">transport=</span><span class="s">&#39;xhr&#39;</span><span class="nt">&gt;&lt;/button&gt;</span>&#x000A;  <span class="nt">&lt;/header&gt;</span>&#x000A;  <span class="nt">&lt;ul</span> <span class="na">name=</span><span class="s">&#39;people&#39;</span><span class="nt">&gt;</span>&#x000A;    <span class="nt">&lt;li</span> <span class="na">itemid=</span><span class="s">&#39;ibolmo&#39;</span> <span class="na">itemscope=</span><span class="s">&#39;itemscope&#39;</span> <span class="na">itemtype=</span><span class="s">&#39;person http://schema.org/Person&#39;</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      <span class="nt">&lt;h2&gt;</span>&#x000A;        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;http://github.com/ibolmo&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;url&#39;</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">&#39;name&#39;</span><span class="nt">&gt;</span>Olmo Maldonado<span class="nt">&lt;/span&gt;</span>&#x000A;        <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;/h2&gt;</span>&#x000A;      <span class="nt">&lt;dl&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Gender<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd</span> <span class="na">itemprop=</span><span class="s">&#39;gender&#39;</span><span class="nt">&gt;</span>Male<span class="nt">&lt;/dd&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Job title<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd</span> <span class="na">itemprop=</span><span class="s">&#39;jobTitle&#39;</span><span class="nt">&gt;</span>Programmer<span class="nt">&lt;/dd&gt;</span>&#x000A;        <span class="nt">&lt;dt&gt;</span>Email<span class="nt">&lt;/dt&gt;</span>&#x000A;        <span class="nt">&lt;dd&gt;</span>&#x000A;          <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;mailto:olmo@maldonado.biz&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;email&#39;</span><span class="nt">&gt;</span>olmo@maldonado.biz<span class="nt">&lt;/a&gt;</span>&#x000A;        <span class="nt">&lt;/dd&gt;</span>&#x000A;      <span class="nt">&lt;/dl&gt;</span>&#x000A;    <span class="nt">&lt;/li&gt;</span>&#x000A;    <span class="nt">&lt;li</span> <span class="na">itemid=</span><span class="s">&#39;subtleGradient&#39;</span> <span class="na">itemscope=</span><span class="s">&#39;itemscope&#39;</span> <span class="na">itemtype=</span><span class="s">&#39;person http://schema.org/Person&#39;</span><span class="nt">&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      <span class="nt">&lt;h2&gt;</span>&#x000A;        <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;http://github.com/subtleGradient&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;url&#39;</span><span class="nt">&gt;</span>&#x000A;          <span class="nt">&lt;span</span> <span class="na">itemprop=</span><span class="s">&#39;name&#39;</span><span class="nt">&gt;</span>Thomas Aylott<span class="nt">&lt;/span&gt;</span>&#x000A;        <span class="nt">&lt;/a&gt;</span>&#x000A;      <span class="nt">&lt;/h2&gt;</span>&#x000A;      <span class="nt">&lt;a</span> <span class="na">href=</span><span class="s">&#39;mailto:thomas@aylott.biz&#39;</span> <span class="na">itemprop=</span><span class="s">&#39;email&#39;</span><span class="nt">&gt;</span>thomas@aylott.biz<span class="nt">&lt;/a&gt;</span>&#x000A;    <span class="nt">&lt;/li&gt;</span>&#x000A;  <span class="nt">&lt;/ul&gt;</span>&#x000A;</code>
+    </figure>
+    <section>
+      <h2>Same bar in the bottom</h2>
+      
+      <p>The element is now <code>footer</code>, but let it not fool you, it&rsquo;s the same bar
+      as above. The widget class is going to be the same, so the behavior.
+      It will be disabled if there are no items selected in the grid list.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>58</li>
+        <li>59</li>
+        <li>60</li>
+        <li>61</li>
+        <li>62</li>
+        <li>63</li>
+        <li>64</li>
+        <li>65</li>
+        <li>66</li>
+      </ol>
+      <code>  <span class="nt">&lt;footer&gt;</span>&#x000A;    <span class="nt">&lt;label&gt;</span>&#x000A;      <span class="nt">&lt;input</span> <span class="na">type=</span><span class="s">&#39;checkbox&#39;</span> <span class="nt">/&gt;</span>&#x000A;      Select all&#x000A;    <span class="nt">&lt;/label&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">action=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;</span>Delete<span class="nt">&lt;/button&gt;</span>&#x000A;    <span class="nt">&lt;button</span> <span class="na">action=</span><span class="s">&#39;delete&#39;</span><span class="nt">&gt;&lt;/button&gt;</span>&#x000A;  <span class="nt">&lt;/footer&gt;</span>&#x000A;<span class="nt">&lt;/form&gt;</span>&#x000A;</code>
+    </figure>
+    <figure>
+      <ol>
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+        <li>5</li>
+        <li>6</li>
+        <li>7</li>
+        <li>8</li>
+        <li>9</li>
+        <li>10</li>
+        <li>11</li>
+        <li>12</li>
+        <li>13</li>
+        <li>14</li>
+        <li>15</li>
+        <li>16</li>
+        <li>17</li>
+        <li>18</li>
+        <li>19</li>
+        <li>20</li>
+        <li>21</li>
+        <li>22</li>
+        <li>23</li>
+        <li>24</li>
+        <li>25</li>
+        <li>26</li>
+        <li>27</li>
+        <li>28</li>
+        <li>29</li>
+        <li>30</li>
+        <li>31</li>
+      </ol>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">),</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;selectlist-option&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Selectlist</span><span class="p">.</span><span class="nx">Option</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;option&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="nb">Array</span><span class="p">.</span><span class="nx">fast</span><span class="p">(</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">)</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form&#39;</span><span class="p">,</span> <span class="s1">&#39;fieldset&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">list</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; ul&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>A widget with <strong>list</strong> pseudoclass will fire <code>set</code> event
+      when an item is <em>selected</em> and ind <code>unset</code> when it is unselected.</p>
+      
+      <p>Keep in mind, that <code>unset</code> event is not fired when another item
+      is going to be selected right after, if there is only one selected
+      item allowed in a group (when list is a radiogroup).</p>
+      
+      <p>Strings as values are method names that are bound to the widget.
+      So both <code>set</code> and <code>unset</code> method will trigger grid.onSelectionChange</p>
+    </section>
+    <figure>
+      <ol>
+        <li>33</li>
+        <li>34</li>
+        <li>35</li>
+        <li>36</li>
+      </ol>
+      <code>          <span class="nx">events</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span><span class="p">,</span>&#x000A;            <span class="nx">unset</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span>&#x000A;          <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Callbacks are the special events that happen with the relation.</p>
+      
+      <ul>
+      <li><code>add</code> callback is fired when there is a widget found that satisfies
+      the conditions to be related.</li>
+      <li><code>remove</code> is triggered when the widget that used to be related
+      can not be related anymore (e.g. it was removed from the document
+      or doesn&rsquo;t have required <code>item</code> pseudoclass anymore)</li>
+      </ul>
+    </section>
+    <figure>
+      <ol>
+        <li>37</li>
+        <li>38</li>
+        <li>39</li>
+        <li>40</li>
+        <li>41</li>
+        <li>42</li>
+      </ol>
+      <code>          <span class="nx">callbacks</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">add</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span><span class="p">,</span>&#x000A;            <span class="nx">remove</span><span class="o">:</span> <span class="s1">&#39;onSelectionChange&#39;</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Bar is either a <strong>header</strong> or <strong>footer</strong> element
+      that is nested right into the grid. An array of bars
+      is accessible as grid.bars</p>
+    </section>
+    <figure>
+      <ol>
+        <li>43</li>
+        <li>44</li>
+        <li>45</li>
+        <li>46</li>
+        <li>47</li>
+        <li>48</li>
+        <li>49</li>
+        <li>50</li>
+        <li>51</li>
+        <li>52</li>
+      </ol>
+      <code>      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">bars</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; header, &gt; footer&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-bar&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Bar widget is a grid toolbar. It holds buttons that do actions on items
+      and a checkbox that selects all items.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>54</li>
+        <li>55</li>
+        <li>56</li>
+      </ol>
+      <code><span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">Bar</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;bar&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section><p>The main purpose of the grid bar is to</p></section>
+    <figure>
+      <ol>
+        <li>58</li>
+        <li>59</li>
+        <li>60</li>
+        <li>61</li>
+      </ol>
+      <code>    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">buttons</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;button&#39;</span><span class="p">,</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><code>states.set</code> option mirrors <code>disabled</code> state of the bar on to
+      its buttons. So whenever bar gets disabled or enabled, buttons
+      inside of it do the same.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>62</li>
+        <li>63</li>
+        <li>64</li>
+        <li>65</li>
+        <li>66</li>
+      </ol>
+      <code>          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;disabled&#39;</span><span class="o">:</span> <span class="s1">&#39;disabled&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>If you remember, <code>form-associated</code> pseudo class makes form
+      (and the grid is a form) recognize the widget as its element.</p>
+      
+      <p>Usually, it is used to add values to form&rsquo;s dataset, but
+      here buttons dont really have values.</p>
+      
+      <p>The other effect of widget being form associated, is that
+      it recieves <code>widget.form</code> property that makes form (and grid)
+      easily accessible for buttons. It will be used below.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>67</li>
+        <li>68</li>
+        <li>69</li>
+        <li>70</li>
+      </ol>
+      <code>          <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;form-associated&#39;</span><span class="p">]</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><strong>chain</strong> option is a way to define a queue of actions
+      to be executed in widget&rsquo;s chain routine.</p>
+      
+      <p><code>target</code> attribute selectors in templates do exactly this
+      under the hood.</p>
+      
+      <p>A single item in a chain is called <strong>link</strong>. Links can be of
+      the following types:</p>
+      
+      <ul>
+      <li><p><strong>Synchronous action</strong> executes an action on target and
+      immediately calls the next link for execution.</p></li>
+      <li><p><strong>Asynchronous action</strong> has to wait until it&rsquo;s over to
+      pass the execution to next links. Sometimes, these actions
+      may result in either success or failure, thus defining
+      which links exactly will be executed.</p></li>
+      <li><p><strong>Arguments</strong> link does no real action, but it prepares
+      arguments for the next link. That kind of link, for example,
+      retrieve and pass extra data for submission.</p></li>
+      </ul>
+    </section>
+    <figure>
+      <ol>
+        <li>71</li>
+      </ol>
+      <code>    <span class="nx">chain</span><span class="o">:</span> <span class="p">{</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Perform link will be called when the button is clicked. But
+      what is that action it should do to selected items?</p>
+      
+      <p>A link is a function that defines which action is going
+      to be called on which target and when. When chain is called,
+      all links are called and actions get sorted by their priority.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>72</li>
+      </ol>
+      <code>      <span class="nx">perform</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Since the buttons are form associated, they can use <code>this.form</code>
+      shortcut to access grid. <code>this.form.list</code> returns the list associated
+      to parent grid.</p>
+      
+      <p>If a button has custom <code>action</code> attribute, the action with
+      that name will be executed on selected items.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>73</li>
+        <li>74</li>
+      </ol>
+      <code>        <span class="k">if</span> <span class="p">(</span><span class="k">this</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">action</span><span class="p">)</span> <span class="p">{</span>&#x000A;          <span class="k">return</span> <span class="p">{</span><span class="nx">name</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">attributes</span><span class="p">.</span><span class="nx">action</span><span class="p">,</span> <span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">};</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Otherwise, serialized list data is left for the next action in chain
+      that is a button submission. The button later gets sent to its
+      <code>href</code> location using XmlHTTPRequest (if <code>transport</code> attribute is set to <code>xjr</code>)
+      with the selected list ids in paramters. Request may look like this:</p>
+      
+      <p>POST /people/delete?people[]=ibolmo&amp;people[]=subtleGradient</p>
+      
+      <p>where <code>people</code> is the name of the list and <code>ibolmo</code> is the id
+      of selected item. <code>/people/delete</code> comes from the <code>href</code> attribute
+      of a button. And method (that is <code>POST</code>) is specified with <code>method</code> attribute.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>75</li>
+        <li>76</li>
+        <li>77</li>
+        <li>78</li>
+      </ol>
+      <code>        <span class="p">}</span> <span class="k">else</span> <span class="p">{</span>&#x000A;          <span class="k">return</span> <span class="p">{</span><span class="nx">arguments</span><span class="o">:</span> <span class="p">{</span><span class="nx">data</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">getData</span><span class="p">()},</span> <span class="nx">priority</span><span class="o">:</span> <span class="mi">10</span><span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p><code>refresh</code> link will trigger re-submission of a grid and will fetch new items.
+      This is useful if the items are paginated. After one item gets deleted,
+      newly received items will fill the blanks. Response may also include updated
+      paginator links and counters.</p>
+      
+      <p>The idea is to take action on items, and then receieve updated items back.</p>
+    </section>
+    <figure>
+      <ol>
+        <li>80</li>
+        <li>81</li>
+        <li>82</li>
+        <li>83</li>
+        <li>84</li>
+        <li>85</li>
+        <li>86</li>
+        <li>87</li>
+      </ol>
+      <code>      <span class="nx">refresh</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;        <span class="k">return</span> <span class="p">{</span>&#x000A;          <span class="nx">target</span><span class="o">:</span> <span class="k">this</span><span class="p">.</span><span class="nx">form</span><span class="p">,</span>&#x000A;          <span class="nx">action</span><span class="o">:</span> <span class="s1">&#39;submit&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">},</span>&#x000A;</code>
+    </figure>
+    <section>
+      <p>Our first real method (we didnt write any so far), will be a callback. It is defined
+      as an instance method for ease of binding. So this function can be used as a listener
+      for events on other widgets and objects and still have <code>this</code> pointing to grid widget.</p>
+      
+      <p>There&rsquo;re two item collections that relations maintain for us:</p>
+      
+      <ul>
+      <li><strong>items</strong> contains all items in a list</li>
+      <li><strong>selectedItems</strong> is a filtered subset of items that are selected now.</li>
+      </ul>
+      
+      
+      <p>So the the method does two things:</p>
+      
+      <ul>
+      <li>It disables bars if there&rsquo;re no items selected in list</li>
+      <li>It checks bar checkbox on if all items in a grid are selected and checks it off
+      if atleast one item is not selected anymore.</li>
+      </ul>
+    </section>
+    <figure>
+      <ol>
+        <li>90</li>
+        <li>91</li>
+        <li>92</li>
+        <li>93</li>
+        <li>94</li>
+        <li>95</li>
+        <li>96</li>
+        <li>97</li>
+        <li>98</li>
+        <li>99</li>
+        <li>100</li>
+        <li>101</li>
+        <li>102</li>
+        <li>103</li>
+        <li>104</li>
+        <li>105</li>
+        <li>106</li>
+        <li>107</li>
+        <li>108</li>
+        <li>109</li>
+        <li>110</li>
+        <li>111</li>
+        <li>112</li>
+        <li>113</li>
+        <li>114</li>
+        <li>115</li>
+        <li>116</li>
+        <li>117</li>
+        <li>118</li>
+        <li>119</li>
+        <li>120</li>
+        <li>121</li>
+        <li>122</li>
+        <li>123</li>
+        <li>124</li>
+        <li>125</li>
+        <li>126</li>
+        <li>127</li>
+        <li>128</li>
+        <li>129</li>
+        <li>130</li>
+        <li>131</li>
+        <li>132</li>
+        <li>133</li>
+        <li>134</li>
+        <li>135</li>
+        <li>136</li>
+        <li>137</li>
+        <li>138</li>
+        <li>139</li>
+        <li>140</li>
+        <li>141</li>
+        <li>142</li>
+        <li>143</li>
+        <li>144</li>
+        <li>145</li>
+      </ol>
+      <code>  <span class="nx">onSelectionChange</span><span class="o">:</span> <span class="kd">function</span><span class="p">()</span> <span class="p">{</span>&#x000A;    <span class="kd">var</span> <span class="nx">selected</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">selectedItems</span><span class="p">.</span><span class="nx">length</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>&#x000A;    <span class="kd">var</span> <span class="nx">items</span> <span class="o">=</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span> <span class="o">?</span> <span class="k">this</span><span class="p">.</span><span class="nx">list</span><span class="p">.</span><span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">:</span> <span class="mi">0</span><span class="p">;</span>&#x000A;    <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">==</span> <span class="nx">selected</span><span class="p">)</span> <span class="kd">var</span> <span class="nx">mode</span> <span class="o">=</span> <span class="kc">true</span><span class="p">;</span>&#x000A;    <span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="nx">items</span> <span class="o">==</span> <span class="nx">selected</span> <span class="o">+</span> <span class="mi">1</span> <span class="o">||</span> <span class="o">!</span><span class="nx">selected</span><span class="p">)</span> <span class="kd">var</span> <span class="nx">mode</span> <span class="o">=</span> <span class="kc">false</span><span class="p">;</span>&#x000A;    <span class="k">else</span> <span class="k">return</span><span class="p">;</span>&#x000A;    <span class="k">return</span> <span class="k">this</span><span class="p">.</span><span class="nx">bars</span><span class="p">.</span><span class="nx">each</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">bar</span><span class="p">)</span> <span class="p">{</span>&#x000A;      <span class="nx">bar</span><span class="p">[</span><span class="nx">selected</span> <span class="o">?</span> <span class="s1">&#39;enable&#39;</span> <span class="o">:</span> <span class="s1">&#39;disable&#39;</span><span class="p">]();</span>&#x000A;      <span class="k">if</span> <span class="p">(</span><span class="nx">mode</span> <span class="o">!=</span> <span class="kc">null</span><span class="p">)</span> <span class="nx">bar</span><span class="p">.</span><span class="nx">checkbox</span><span class="p">[</span><span class="nx">mode</span> <span class="o">?</span> <span class="s1">&#39;check&#39;</span> <span class="o">:</span> <span class="s1">&#39;uncheck&#39;</span><span class="p">]</span>&#x000A;    <span class="p">})</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">})</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;list&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">attributes</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">multiple</span><span class="o">:</span> <span class="kc">true</span>&#x000A;    <span class="p">},</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;list&#39;</span><span class="p">,</span> <span class="s1">&#39;form-associated&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">many</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">items</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">mutation</span><span class="o">:</span> <span class="s1">&#39;&gt; li&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">source</span><span class="o">:</span> <span class="s1">&#39;grid-list-item&#39;</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="nx">LSD</span><span class="p">.</span><span class="nx">Widget</span><span class="p">.</span><span class="nx">Grid</span><span class="p">.</span><span class="nx">List</span><span class="p">.</span><span class="nx">Item</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">Class</span><span class="p">({</span>&#x000A;  <span class="nx">options</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="nx">tag</span><span class="o">:</span> <span class="s1">&#39;item&#39;</span><span class="p">,</span>&#x000A;    <span class="nx">pseudos</span><span class="o">:</span> <span class="p">[</span><span class="s1">&#39;item&#39;</span><span class="p">,</span> <span class="s1">&#39;clickable&#39;</span><span class="p">],</span>&#x000A;    <span class="nx">has</span><span class="o">:</span> <span class="p">{</span>&#x000A;      <span class="nx">one</span><span class="o">:</span> <span class="p">{</span>&#x000A;        <span class="nx">checkbox</span><span class="o">:</span> <span class="p">{</span>&#x000A;          <span class="nx">selector</span><span class="o">:</span> <span class="s1">&#39;input[type=checkbox]&#39;</span><span class="p">,</span>&#x000A;          <span class="nx">states</span><span class="o">:</span> <span class="p">{</span>&#x000A;            <span class="nx">get</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;checked&#39;</span><span class="o">:</span> <span class="s1">&#39;selected&#39;</span>&#x000A;            <span class="p">},</span>&#x000A;            <span class="nx">set</span><span class="o">:</span> <span class="p">{</span>&#x000A;              <span class="s1">&#39;selected&#39;</span><span class="o">:</span> <span class="s1">&#39;checked&#39;</span>&#x000A;            <span class="p">}</span>&#x000A;          <span class="p">}</span>&#x000A;        <span class="p">}</span>&#x000A;      <span class="p">}</span>&#x000A;    <span class="p">}</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;<span class="k">new</span> <span class="nx">LSD</span><span class="p">.</span><span class="nx">Document</span><span class="p">({</span>&#x000A;  <span class="nx">mutations</span><span class="o">:</span> <span class="p">{</span>&#x000A;    <span class="s1">&#39;.grid&#39;</span><span class="o">:</span> <span class="s1">&#39;grid&#39;</span><span class="p">,</span>&#x000A;    <span class="s1">&#39;nav ul[name]&#39;</span><span class="o">:</span> <span class="s1">&#39;selectlist&#39;</span>&#x000A;  <span class="p">}</span>&#x000A;<span class="p">});</span>&#x000A;</code>
+    </figure>
+  </body>
+</html>

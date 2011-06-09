@@ -1,0 +1,74 @@
+body, html
+  :padding 0
+  :border 0
+body
+  :padding 0.5em
+  :font-family Helvetica
+
+.grid
+  :display block
+  > nav
+    :overflow hidden
+    :line-height 2em
+    ul[name]
+      :vertical-align baseline
+      :display inline-block
+      > li
+        :color #999
+        :text-decoration underline
+        :cursor pointer
+        &.selected
+          :color #333
+          :text-decoration none
+        :display inline-block
+        :vertical-align baseline
+        :line-height 1.5em
+        \+ li
+          :margin-left 0.3em
+          :padding-left 0.3em
+          :border-left 1px solid #666
+          :line-height 1.5em
+          
+    button[type=submit]
+      :margin-left 0.5em
+      :margin-right 2em
+    label
+      :margin-right 0.5em
+      :font-weight bold
+    fieldset
+      :margin-right 1em
+      :display inline-block
+
+  > ul
+    :margin-top 0.5em
+    :border 1px solid #333
+    :border-radius 0.5em
+    :-webkit-border-radius 0.5em
+    :-moz-border-radius 0.5em
+    :padding 0.5em
+    :box-shadow 0 3px 5px #555
+    :-webkit-box-shadow 0 3px 5px #555
+    :-moz-box-shadow 0 3px 5px #555
+    > li
+      &.selected
+        :background-color #FFC873
+      :padding 0.5em 0.5em 0.5em 1.5em
+      > input[type=checkbox]
+        :margin-left -1.5em
+        \+ h2
+          :margin-top -1.15em
+      :border 1px solid #666
+      :border-radius 0.5em
+      :-webkit-border-radius 0.5em
+      :-moz-border-radius 0.5em
+      \+ li
+        :margin-top 0.5em
+      dl
+        dt
+          :float left
+          :clear both
+          :width 5em
+          :font-weight bold
+          :padding-right 1em
+          :text-align right
+          

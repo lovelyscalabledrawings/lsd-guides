@@ -1,0 +1,102 @@
+<!--
+  ## This needs to be more interactive
+  
+  Now when we've managed to set up a working widget tree,
+  it's time to make grid do something useful.
+  
+  Grids often allow user to take actions on items in grid.
+  Select items you'd like, hit "delete", and bam! It's all gone.
+  
+  This chapter only introduces one new widget - a bar, which is a 
+  toolbar for action buttons. Let's make it a little fancy and
+  make it two bars, before and after the items list.
+-->
+<form action='/people' class='grid' target='grid list' transport='xhr'>
+  <nav>
+    <input name='q' type='search' />
+    <button type='submit'>Send</button>
+    <fieldset>
+      <label>Sort by:</label>
+      <ul name='sort_by'>
+        <li class='selected'>Date</li>
+        <li>Time</li>
+      </ul>
+    </fieldset>
+    <fieldset>
+      <label>Types:</label>
+      <ul multiple='multiple' name='type'>
+        <li class='selected' value='Feed'>News</li>
+        <li>Photos</li>
+        <li class='selected'>Songs</li>
+      </ul>
+    </fieldset>
+  </nav>
+  <!--
+    ## Button bar
+    
+    Top bar is simply a `<header>` element. It will be only enabled
+    when there are some list items selected on the grid, otherwise
+    bar itself and buttons inside will be disabled.
+  -->
+  <header>
+    <!--
+      Checkbox to select all items. Quite ordinary, except that it 
+      is only checked when all items are selected in the grid.
+    -->
+    <label>
+      <input type='checkbox' />
+      Select all
+    </label>
+    <!--
+      A button with a custom `execute` attribute. LSD doesn't know anything
+      about `execute` attribute on `<button>` elements, but we're going to use it
+      to trigger actions on selected items. So this button will delete selected items.
+    -->
+    <button execute='delete'>Delete</button>
+    <button href='/person/followships' method='post' transport='xhr'></button>
+  </header>
+  <ul name='people'>
+    <li itemid='ibolmo' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <input type='checkbox' />
+      <h2>
+        <a href='http://github.com/ibolmo' itemprop='url'>
+          <span itemprop='name'>Olmo Maldonado</span>
+        </a>
+      </h2>
+      <dl>
+        <dt>Gender</dt>
+        <dd itemprop='gender'>Male</dd>
+        <dt>Job title</dt>
+        <dd itemprop='jobTitle'>Programmer</dd>
+        <dt>Email</dt>
+        <dd>
+          <a href='mailto:olmo@maldonado.biz' itemprop='email'>olmo@maldonado.biz</a>
+        </dd>
+      </dl>
+    </li>
+    <li itemid='subtleGradient' itemscope='itemscope' itemtype='person http://schema.org/Person'>
+      <input type='checkbox' />
+      <h2>
+        <a href='http://github.com/subtleGradient' itemprop='url'>
+          <span itemprop='name'>Thomas Aylott</span>
+        </a>
+      </h2>
+      <a href='mailto:thomas@aylott.biz' itemprop='email'>thomas@aylott.biz</a>
+    </li>
+  </ul>
+  <!--
+    ## Same bar in the bottom
+    
+    The element is now `footer`, but let it not fool you, it's the same bar
+    as above. The widget class is going to be the same, so the behavior. 
+    It will be disabled if there are no items selected in the grid list.
+  -->
+  <footer>
+    <label>
+      <input type='checkbox' />
+      Select all
+    </label>
+    <button action='delete'>Delete</button>
+    <button action='delete'></button>
+  </footer>
+</form>

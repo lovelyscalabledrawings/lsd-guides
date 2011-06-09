@@ -1,0 +1,90 @@
+/ 
+  :plain
+    ## This needs to be more interactive
+  
+    Now when we've managed to set up a working widget tree,
+    it's time to make grid do something useful.
+  
+    Grids often allow user to take actions on items in grid.
+    Select items you'd like, hit "delete", and bam! It's all gone.
+  
+    This chapter only introduces one new widget - a bar, which is a 
+    toolbar for action buttons. Let's make it a little fancy and
+    make it two bars, before and after the items list.
+%form.grid{:action => "/people", :transport => "xhr", :target => "grid list"}
+  %nav
+    %input{:type => "search", :name => "q"}
+    %button{:type => "submit"} Send
+    %fieldset
+      %label Sort by:
+      %ul{:name => "sort_by"}
+        %li.selected Date
+        %li Time
+    %fieldset
+      %label Types:
+      %ul{:name => "type", :multiple => true}
+        %li.selected{:value => "Feed"} News
+        %li Photos
+        %li.selected Songs
+  /
+    :plain
+      ## Button bar
+      
+      Top bar is simply a `<header>` element. It will be only enabled
+      when there are some list items selected on the grid, otherwise
+      bar itself and buttons inside will be disabled.  
+      
+  %header
+    /
+      :plain
+        Checkbox to select all items. Quite ordinary, except that it 
+        is only checked when all items are selected in the grid. 
+    %label 
+      %input{:type => :checkbox}
+      Select all
+    /
+      :plain
+        A button with a custom `execute` attribute. LSD doesn't know anything
+        about `execute` attribute on `<button>` elements, but we're going to use it
+        to trigger actions on selected items. So this button will delete selected items.
+    %button{:execute => "delete"} Delete
+    %button{:href => "/person/followships", :method => :post, :transport => :xhr}
+      
+  %ul{:name => "people"}
+    %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "ibolmo"}
+      %input{:type => "checkbox"}
+      %h2 
+        %a{:itemprop => "url", :href => "http://github.com/ibolmo"} 
+          %span{:itemprop => "name"} Olmo Maldonado
+    
+      %dl
+        %dt Gender
+        %dd{:itemprop => "gender"} Male
+        %dt Job title
+        %dd{:itemprop => "jobTitle"} Programmer
+        %dt Email
+        %dd
+          %a{:href => "mailto:olmo@maldonado.biz", :itemprop => "email"} olmo@maldonado.biz
+  
+    %li{:itemscope => true, :itemtype => "person http://schema.org/Person", :itemid => "subtleGradient"}
+      %input{:type => "checkbox"}
+      %h2
+        %a{:itemprop => "url", :href => "http://github.com/subtleGradient"} 
+          %span{:itemprop => "name"} Thomas Aylott
+        
+      %a{:href => "mailto:thomas@aylott.biz", :itemprop => "email"} thomas@aylott.biz
+      
+  /
+    :plain
+      ## Same bar in the bottom
+    
+      The element is now `footer`, but let it not fool you, it's the same bar
+      as above. The widget class is going to be the same, so the behavior. 
+      It will be disabled if there are no items selected in the grid list.
+
+  %footer
+    %label 
+      %input{:type => :checkbox}
+      Select all
+    %button{:action => "delete"} Delete
+    %button{:action => "delete"}
