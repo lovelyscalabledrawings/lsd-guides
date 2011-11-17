@@ -24,12 +24,12 @@ The usual approach is something along these (mootools, pseudocode) lines:
         })
       })
     })
-    
+
 DOM frameworks have functional but somewhat sparse tools. It's not the worst possible code, but it is a:
 
-  * **glue code** - A spaghetti of different domains connected together to make something useful. Event listener, submission flow, data retrieval, an update and animation in only a few lines of code. 
+  * **glue code** - A spaghetti of different domains connected together to make something useful. Event listener, submission flow, data retrieval, an update and animation in only a few lines of code.
   * **nested callback hell** - The only way to set flow is to nest callbacks. When there are more layers added on top, like error handling and branching, it gets even worse. Some people are trying to solve the problem by introducing pseudo-continuations, promises and other functional abstractions and compositions, but at the heart of all it still stays ugly and slow.
-  
+
 ## Chains
 
 Another approach is to look at the scenario in a more abstract way. We could try to represent scenario as a **chain** of commands to apply an **action** on a **target**.
@@ -39,22 +39,22 @@ Another approach is to look at the scenario in a more abstract way. We could try
   `(target: form,     action: submit)`
 * Update #content element with response
   `(target: #content, action: replace)`
-* Fade it in                           
+* Fade it in
   `(target: #content, action: display, state: true)`
-* After that, fade out the form             
+* After that, fade out the form
   `(target: form,     action: display, state: false)`
-  
-The **chain** executes as it reads - from top to bottom. When it reaches asynchronous step (like submitting a form), it stops execution until it gets the successful response. The response is passed to the next step, and the chain goes on. 
+
+The **chain** executes as it reads - from top to bottom. When it reaches asynchronous step (like submitting a form), it stops execution until it gets the successful response. The response is passed to the next step, and the chain goes on.
 
 Every time a chain starts or continues after the break, it does so with arguments. An action that requests data will continue the chain after request is done and pass the response to the next action. And that action should make use of that response, because following actions will not be able to access it anymore.
 
 ## Actions
 
-LSD has around 20 built in actions that can be executed on widgets and elements. 
+LSD has around 20 built in actions that can be executed on widgets and elements.
 
 ### Synchronous actions
 
-Some actions can be executed right away and they will not need to wait until something is finished. Those are **synchronous** actions. 
+Some actions can be executed right away and they will not need to wait until something is finished. Those are **synchronous** actions.
 
 #### Irreversible
 
@@ -76,15 +76,15 @@ For those what's done is done. There's no way back, and there's no need to.
 
 #### Reversible
 
-The actions that can be undone are called **reversible**. They are often are executed in indeterminate state. That means, that the action is specified, but wether it should be done or undone, is upon action. 
+The actions that can be undone are called **reversible**. They are often are executed in indeterminate state. That means, that the action is specified, but wether it should be done or undone, is upon action.
 
 * **Toggle** - toggles the checkbox state. LSD makes use of HTML5 commands abstractions, so most checkbox may not look like them. For example, selecting an item in a list can be done with `check` too. Toggle will either **check** if target is unchecked, or **uncheck** otherwise.
 
 * **Counter** parses any HTML element and if it contains a phrase like "10 comments", the action will increment it (and pluralize the word). It's pretty smart and will still work even if the number or the noun is wrapped into some html tag. The opposite of that is **Decrement** action, that reduces the found number by one.
 
   Defines **Increment** and **Decrement** actions as aliases.
-  
-* **State**(name) - changes the state of the node. Requires state name argument. If a node is an element, the action will toggle the class with the name of the state. If it's a widget, it will try to set the state with that name. 
+
+* **State**(name) - changes the state of the node. Requires state name argument. If a node is an element, the action will toggle the class with the name of the state. If it's a widget, it will try to set the state with that name.
 
 * **Focus** - focuses the node. Provides **Blur** action alias that does opposite.
 
@@ -92,7 +92,7 @@ The actions that can be undone are called **reversible**. They are often are exe
 
 Some actions are only asynchronous on condition.
 
-* **Delete** - removes a tree of nodes from the DOM. If the deleted node is a `resourceful` widget (`itemtype`, `itemscope` and `itemid` are set), it sends a DELETE request to `itemtype`, stops chain execution and continues only if request comes backs successful. For nodes that are not resourceful widgets, it simply disposes the target synchronously and continues. 
+* **Delete** - removes a tree of nodes from the DOM. If the deleted node is a `resourceful` widget (`itemtype`, `itemscope` and `itemid` are set), it sends a DELETE request to `itemtype`, stops chain execution and continues only if request comes backs successful. For nodes that are not resourceful widgets, it simply disposes the target synchronously and continues.
 
 * **Display** - hides or shows the node. It toggles display state of the node usually. But if the node is a widget, action calls `hide` or `show` methods on it. Widget may decide to use animation to hide or show and return animation object back to action. In that case, the action will be considered asynchronous and execution chain will be broken until animation is complete.
 
@@ -107,11 +107,11 @@ An action that triggers some process and waits until's done is called **asynchro
   * **link** node or a widget that has either `href` or `src` attribute
   * **clickable** node. Submission calls `.click()` method on it.
   * **resourceful** widget with HTML5 microdata `itemscope` & `itemtype` attributes. Submission of a resourceful widget without `itemid` attribute result in a POST to the url in `itemtype`. Submission of widget with `itemid` will result in a PUT to `itemtype`/`itemid`. In other words, it a resource with `itemid` attribute is considered saved.
-  
-* **Dialog** - clones a target node with all its children and displays it as dialog. Proceeds only when dialog is successfully submitted. 
+
+* **Dialog** - clones a target node with all its children and displays it as dialog. Proceeds only when dialog is successfully submitted.
 
 * **Edit** - turns a node into an editable form. It converts all microdata-marked elements with `editable` attribute and turn them into a form fields. The form will submit the resource and update it and hide itself upon getting successful response.
-  
+
 
 ## Create action chain
 
@@ -119,7 +119,7 @@ An action that triggers some process and waits until's done is called **asynchro
 
 Defining a chain in options is pretty straightforward. **chain** option accepts an object of *links* with keys of labels and values of functions that return the **link** objects.
 
-A link is a simple object with `target` and `action` properties. If there's no target given or a link is a string, it uses the widget itself as the target. 
+A link is a simple object with `target` and `action` properties. If there's no target given or a link is a string, it uses the widget itself as the target.
 
 Let's see how a form that updates #content element may be implemented:
 
@@ -138,7 +138,7 @@ Let's see how a form that updates #content element may be implemented:
     });
     var form = new LSD.Widget({tag: 'form'});
     form.callChain(); //sends form, updates #content
-    
+
 A form submits itself and breaks the chain. When it gets the response, it continues the chain and updates the element with the content from the previous step (passed to `update` action behind the scenes). Chain execution is triggered with `callChain()` method. Usually it's done under the hood, but we'll get to it later.
 
 ### Commands
@@ -152,12 +152,12 @@ A typical command has name, **type** and **action**. There are three types of th
   * **Command** - is a irreversible action. Sending a form is an example of that.
   * **Checkbox** - reversible action that can be done and undone by repeating interaction.
   * **Radio** - a "choose one" kind of a action. Checking item in a group, unchecks others.
-  
+
 Every interactive widget on the page falls into one of the three groups. For example `<select>` is a radiogroup of `<option>` commands, and `<select multiple>` is a set of checkbox commands defined by `<option>` elements.
 
-Often widgets don't have a specified command and they figure it out from the widget configuration. For example, a widget with a `href` or `action` attribute is considered as a widget that sends requests by LSD. And this recognition also defines the **action** of a command. 
+Often widgets don't have a specified command and they figure it out from the widget configuration. For example, a widget with a `href` or `action` attribute is considered as a widget that sends requests by LSD. And this recognition also defines the **action** of a command.
 
-So given that we use `form` widget with `action` attribute that turns it asynchronous, we make form define a command that will 
+So given that we use `form` widget with `action` attribute that turns it asynchronous, we make form define a command that will
 have `submit` as its action. `command` pseudo class makes widget generate command.
 
     LSD.Widget.Form = new Class({
@@ -172,8 +172,8 @@ have `submit` as its action. `command` pseudo class makes widget generate comman
     });
     var form = new LSD.Widget({tag: 'form'});
     form.callChain(); //sends form, updates #content
-    
-The submission link was removed, but the form is still sent when .callChain() is called. 
+
+The submission link was removed, but the form is still sent when .callChain() is called.
 
 And there's still an `update` action that has a hardcoded `target` element which makes it hard to reuse in different situations. But there's a solution to that.
 
@@ -194,28 +194,28 @@ In a regular html a layout like the following would send a form into a new tab:
 
     <form action="/people" target="_blank">
     </form>
-    
+
 LSD reuses `target` attribute to access other nodes on the page and even call actions on them. In the following example, a form generates the same action chain (submit & update) as before, but it doesnt have any of those defined in the class itself.
-    
+
     <form action="/people" transport="xhr" target="$$ #content">
       <button type="submit">Submit</button>
     </form>
     <div id="content"></div>
-  
+
     LSD.Widget.Form = new Class({
       options: {
         pseudos: ['fieldset', 'form', 'command']
       }
     });
-    
+
     var form = new LSD.Widget(document.getElement('form'));
     form.callChain();
-    
+
 As you can guess, `target` attribute also defines the action with the target retrieved by selector in attribute. The default action for asynchronous widgets is **update**, but it can be overridden in the selector itself:
 
     <form action="/people" transport="xhr" target="$$ #content :append()">
     </form>
-    
+
 Let's take a closer look at selector.
 
     $$ #content :append()
@@ -226,28 +226,50 @@ Let's take a closer look at selector.
 It reads as "`append` content to `#content` element". The two-dollar is a special **combinator** and it means "document.body". There are 4 combinators like that:
 
   * **&&** (default) - Find in root widget. Finds widget in LSDOM.
-  * **&** - Find in this widget. 
-  * **$$** - Find an element in document.body 
+  * **&** - Find in this widget.
+  * **$$** - Find an element in document.body
   * **$** - Find elements in this element.
-  
-The part at the end is a name of the action. Parenthesizes is optional, but it's there for a better readability. The action should be separated from selector with space. 
 
-Multiple selectors may be separated with comma in one expression. Each selector and action is converted into **chain link** where they are executed in order.  
+>The part at the end is a name of the action. Parenthesizes is optional, but it's there for a better readability. The action should be separated from selector with space.
+
+Multiple selectors may be separated with comma in one expression. Each selector and action is converted into **chain link** where they are executed in order.
 
 When the action is not set in expression, the default target action is used for the widget (and for asynchronous widgets it's `update`).
-  
+
 A few examples of other `target` values:
 
     target="grid item :delete()"
     // Delete all items in the grid
-    
+
     target="& :toggle()"
     // Make widget toggle its checkedness (applicable to checkboxes)
-    
+
     target="$ + a :submit(), $ :hide()"
     // Submit the next element to this node (which is a link), and hide the node after it's done
-    
+
 When the only thing that glues widgets together is a selector in template, and the actual widget classes are clean, it is easy to maintain and change. So if someone changes markup in the application, he can change selectors accordingly without looking for the right place in myriads of javascript files.
+
+## Pseudos
+
+In order to be able to manipulate your objects in a more intuitive way, you can use several pseudos. They work perfectly in a combination with the rest of selectors, and solve most of the traditional problems.
+
+There are following pseudos:
+  first-of-class: matches the first element of the given class
+  last-of-class: matches the last element of the given class
+  only-of-class: matches the element, if it's the only element of the given class
+
+You can combine them to get the desirable result, for example:
+
+   target = "&& fieldset:last-of-class(address) :clone()"
+   // Find the last possible fieldset that has an 'address' class in given scope, and clone it.
+
+   target = "&& fieldset:first-of-class(address) :clone()"
+   // Likewise, find the first fieldset that has 'address' class in the given scope, and clone it.
+
+   target = "&& fieldset:last-of-class(address):not(:only-of-class(address)) :delete()"
+   // Find the fieldset that has an 'address' class, and delete it, if it is not the only element that has 'address' class in given scope
+
+Using these principles you don't have to write complex JavaScript logic to manipulate DOM anymore. Most of the things are easy to cover using that powerful concept, combined with the other ones described in that chapter.
 
 ## Promises
 
@@ -257,8 +279,8 @@ A button that submits the form and waits for the response from back end is easy.
 
 When `delete` action is invoked on many targets at once (via selector that matches multiple targets), some of the targets (or all of them) may be resourceful and send a deletion request. In that case, the chain will wait for all the requests to complete, before chain goes forward.
 
-It's pretty useful in an expression like this: 
-  
+It's pretty useful in an expression like this:
+
     `grid item::selected :delete(), grid :submit()`
     // When every selected item is deleted, update the grid once
 
@@ -272,13 +294,13 @@ The order in which actions are executed by default is this:
   2. Command action, priority 10 (e.g. Submit the form)
   3. Target action,  priority 0 (e.g. update element specified in `target` with response)
   4. Other actions specified in chain
-  5. After-actions, priority -50 
-  
+  5. After-actions, priority -50
+
 Priority is easily set in options:
 
     {action: 'delete', target: this, priority: 5}
-    // will insert action between 2) and 3) 
-  
+    // will insert action between 2) and 3)
+
 And there is a way to tell a `target expression` to define **before** or **after** action with a keyword in the beginning:
 
     target="#content :delete(), before #content :hide()"
@@ -295,23 +317,23 @@ So that means, that if you call `form.callChain()`, the whole chain of actions w
 
 ## Forking
 
-A chain has the beginning and the end. After a chain is complete, it stays in its "complete" state until you decide to call the chain again, which will rewind it to the beginning. Sometimes the action chain of one widget is not enough to describe a complex relation. 
+A chain has the beginning and the end. After a chain is complete, it stays in its "complete" state until you decide to call the chain again, which will rewind it to the beginning. Sometimes the action chain of one widget is not enough to describe a complex relation.
 
-A button that submits form, then form submits dialog, then dialog submits the link it was attached to. 
+A button that submits form, then form submits dialog, then dialog submits the link it was attached to.
 
-In this situation, a chain ends on calling a chain of another widget. And the only action that forks off execution of another chain 
+In this situation, a chain ends on calling a chain of another widget. And the only action that forks off execution of another chain
 is **Submit**.  You can submit pretty much every widget. It will:
 
   * Submit widget if it's submittable. A dialog or a form will start their own chains that way.
   * Send widget, if it's asynchronous. Then it will pick up and start the optional chain.
   * Click widget, if it's clickable. Clickable widgets execute their commands and chains on click.
-  * Just call the chain, if there's one. If everything else fails, it'll just call the chains. 
-  
+  * Just call the chain, if there's one. If everything else fails, it'll just call the chains.
+
 Actually, simply calling chain (4th point) would work on any of the groups first three points and still execute the actions. The reason why it does not do it, is because a widget can have its own semantics in terms of what to do and how to react to interactions. It leaves more freedom in how widget should be implemented.
 
 And if you'll try to submit an element and not a widget, it'll try the same three things - `submit()`, `send()` or `click()`.
 
- 
+
 ## Branching
 
 It's all fun and games, until you have to sensibly handle errors from asynchronous requests. What makes it harder is the fact that some of requests may fail and some may not at the same time, leaving us with both "success" and "failure" outcomes at once.
@@ -324,36 +346,36 @@ LSD uses two keywords for links that make branching
 And two for links that alter the specify the execution model
   * **and** - called for items that returned success
   * **then** - (implied when there's no keyword) waits for all, and only executes action if atleast on request has succeed.
-  
+
 Each comma separated part of the `target` selector may have one keyword (followed by whitespace) in the beginning.
-  
-    target="grid items :delete(), 
-              or :invalidate('Item can not be deleted'), 
-              else grid :invalidate('There were failures'), 
-            grid :validate('All cool'), 
+
+    target="grid items :delete(),
+              or :invalidate('Item can not be deleted'),
+              else grid :invalidate('There were failures'),
+            grid :validate('All cool'),
             grid :update()"
-  
+
 If a selector starts with a keyword, it gets bound to the closest asynchronous action to the left of it. Will it be executed or not depends on the outcome of asynchronous event.
-  
-  
+
+
 ### Callbacks executed preventively
- 
+
   Most of the asynchronous chains have their asynchronous action followed by a callback that is not triggered until the asynchronous action results in successful outcome. The following is a pretty typical scenario:
-  
-  * A user clicks "Follow" link, waits for a second, and then the state changes. 
-  * A user clicks "Unfollow" link, waits for a second, it changes again 
+
+  * A user clicks "Follow" link, waits for a second, and then the state changes.
+  * A user clicks "Unfollow" link, waits for a second, it changes again
   * A user clicks "Follow" link, waits for a second, request fails. State was not changed. Show error message
-  
+
   A user waits 1 second every click, because he has to know if request was successful or not. And users kind of expect waiting, but only because the web technologies dictate the user experience and the delay is taken for granted.
-  
+
   When a developer approaches the problem and wants his callbacks (and state changes) be applied instantly, he leaves just another pile of glue code behind, because he has to handle errors, undo callbacks, show messages all by himself and hardcoded.
-  
+
   But in the world of reversible actions things are different. There is an **and** keyword that links a callback to asynchronous action and rolls back if it fails. How does it work?
-  
+
     <a href="/follow" transport="xhr" target ="and $$ :state(followed), or $ :invalidate('Failed to follow'), #content">Follow</a>
-  
-  A link widget like this will generate three links in the chain (pseudocode): 
-  
+
+  A link widget like this will generate three links in the chain (pseudocode):
+
     chain: {
       submission: function() {
         return {target: this, action: 'submit'}
@@ -374,13 +396,13 @@ If a selector starts with a keyword, it gets bound to the closest asynchronous a
         return {action: 'update', target: document.id('content')}
       }
     }
-  
+
   So a request that fails would make those steps:
-  
+
     * Submit a link
     * Apply "followed" state on body instantly
     * Receive unsuccessful response
     * Unapply "followed" state on body
     * Invalidate the button element with a message 'Failed to follow'
-  
+
   Why is this important? because there's no code at all to do all that and interaction happens seemingly instantly for the user.
